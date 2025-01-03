@@ -1,0 +1,67 @@
+\documentclass[12pt,oneside]{book}
+\usepackage[subpreambles=false,mode=image|tex]{standalone}
+\usepackage{import}
+\usepackage{hyperref}
+\usepackage{currfile}
+\usepackage[utf8]{inputenc}
+%\usepackage[english]{babel}
+\usepackage[spanish]{babel}%cambia el idioma cuando sea necesario
+%\usepackage{graphicx}  
+%\usepackage{blindtext}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{pdfpages}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{cd,quotes,babel,shapes,calc}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	citecolor=cyan,
+	bookmarks=true,
+	pdftitle={Pseudospheres. From distributed computing to combinatorial topology.},
+	pdfauthor={Luis Alberto},
+}
+
+\usepackage[font+=smaller]{subcaption}
+\captionsetup{format=hang,subrefformat=parens}
+%\usepackage[margin=.8in]{geometry}
+
+\usepackage{todonotes}
+
+\theoremstyle{definition}
+\newtheorem{proposition}{Proposición}
+\newtheorem{definition}{Definición}
+\newtheorem{theorem}{Teorema}
+\newtheorem*{theorem*}{Teorema}
+\newtheorem{corollary}{Corolario}
+\newtheorem*{corollary*}{Corolario}
+\newtheorem{lemma}{Lema}
+\newtheorem*{lemma*}{Lema}
+\newtheorem{remark}{Observación}
+\newtheorem{example}{Ejemplo}
+\newtheorem*{sketch}{Bosquejo de prueba}
+
+\begin{document}
+
+\author{Luis Alberto}
+\title{Introducción al análisis topológico de datos}
+\date{2025}
+
+\frontmatter
+\maketitle
+\tableofcontents
+
+\mainmatter
+\include{./TeX_files/capitulo01}
+\include{./TeX_files/capitulo02}
+
+\backmatter
+% bibliography, glossary and index would go here.
+
+\end{document}
