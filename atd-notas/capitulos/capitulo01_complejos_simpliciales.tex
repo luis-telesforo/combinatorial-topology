@@ -2,10 +2,10 @@
 
 
 \begin{document}
-	\noindent Para cualquier conjunto $V$, su conjunto potencia es denotado por $\mathcal{P}(V)$.
+	\noindent Para cualquier conjunto $V$, su conjunto potencia es denotado por $\mathcal{P}(V)$. La carnalidad de $V$ es $\# V$
 	
 	\begin{definition}\label{def:simplicial_complex}
-		Un \emph{complejo simplicial} sobre un conjunto $V$ es un conjunto finito $\Delta\subseteq\mathcal{P}(V)\setminus\{\emptyset\}$ cerrado bajo subconjuntos.
+		Un \emph{complejo simplicial} sobre un conjunto $V$ es un conjunto finito $K\subseteq\mathcal{P}(V)\setminus\{\emptyset\}$ cerrado bajo subconjuntos.
 	\end{definition}
 	
 	Formalmente, la definición de arriba corresponde a la de los \emph{complejos simpliciales abstractos y finitos} \cite[Definition 2.1]{kozlov:2008:combinatorial:alg:topo}; dado que no estudiaremos otro tipo de complejos simpliciales omitimos los otros adjetivos. 
@@ -13,4 +13,11 @@
 	\begin{remark}\label{rem:empty_complexes}
 		En la Definición~\ref{def:simplicial_complex} tenemos dos complejos simpliciales que son importantes. El primero es el complejo simplicial \emph{vano} (\emph{void} en inglés), es decir $\emptyset\subseteq\mathcal{P}(V)$. El segundo es el complejo simplicial \emph{vacío} (\emph{empty} en inglés): $\{\emptyset\}$ \cite[Remark 2.3]{kozlov:2008:combinatorial:alg:topo}. 
 	\end{remark}
+	
+	\section{Notación y nomenclatura estándar.}
+	\noindent Sea $K$ un complejo simplicial. Cada elemento de $K$ se llama \emph{simplejo}\footnote{También es común, quizás lo es más, utilizar el término \emph{cara}. No lo adopto porque tiene un peso geométrico muy grande: \textit{las caras del poliedro.} Aquí no busco } (\emph{simplex} y plural \emph{simplices} en inglés). La \emph{dimensión} de $\sigma$ es $\dim(\sigma)=\#\sigma-1$. Si $\dim(\sigma)=k$ decimos que $\sigma$ es un \emph{$k$-simplejo}. Un \emph{vértice} de un complejo simplicial es un $0$-simplejo; El conjunto de  $n$-simplejos de $K$ será denotado por $K_{n}$. 
+	
+	La dimensión de $K$ es $\dim(K)=\max\{\dim(\sigma)\mid\sigma\in K\}$. Una \emph{faceta} (o \emph{careta}) of a simplicial complex is a maximal simplex with respect to contention. We say that a simplicial complex is \emph{pure} whenever all its facets have the same dimension.
+	
+	Simplicial complexes are combinatorial objects. It is customary to draw simplicial complexes in the following way. A point represents a vertex, an edge represents a $1$-simplex, a triangle represents a $2$-simplex, etc. In Figure~\ref{fig:eg_simplex} we found examples of simplices and in Figure~\ref{fig:eg_simplicial_complex} we present examples of simplicial complexes. We remark that the hollow triangle in Figure~\ref{fig:eg_non_pure}  is not a simplex. Also, it is worth to notice that from the picture only it is not clear whether the tetrahedron in Figure~\ref{fig:3_simplex} is hollow or not. For these reason we only draw simplicial complexes for illustrative purposes.
 \end{document}
