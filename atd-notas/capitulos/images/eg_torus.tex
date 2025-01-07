@@ -1,0 +1,62 @@
+\begingroup
+	\pgfdeclarelayer{background layer}
+	\pgfdeclarelayer{lineas}
+	\pgfsetlayers{background layer,lineas,main}
+	\tikzstyle{zero}=[circle,draw=black,fill=white,inner sep=0pt,minimum size=2.5mm]
+	\tikzstyle{one}=[circle,draw=black,fill=black,inner sep=0pt,minimum size=2.5mm]
+	\tikzstyle{two}=[circle,draw=black,fill=gray,inner sep=0pt,minimum size=2.5mm]
+		\begin{tikzpicture}
+			\node [zero] (0) at (0,0)  {$0$};
+			\node [zero] (3) at (3,0)  {$3$};
+			\node [zero] (6) at (6,0)  {$0$};
+			\node [white, one] (1) at (1,0) {$3$};
+			\node [white,one] (4) at (4,0)  {$0$};
+			\node [two] (2) at (2,0)  {$0$};
+			\node [two] (5) at (5,0)  {$3$};
+			%middle nodes
+			\node [two] (a0) at   ($ (0,0) ! 1 ! 60:(1,0) $)       {$2$};
+			\node [two] (a3) at   ($ (0,0) ! 1 ! 60:(1,0) +(3,0)$) {$1$};
+			\node [two] (a6) at  ($ (0,0) ! 1 ! 60:(1,0) +(6,0)$) {$2$};
+			\node [zero] (a4) at  ($ (0,0) ! 1 ! 60:(1,0) +(4,0)$) {$2$};
+			\node [zero] (a1) at  ($ (0,0) ! 1 ! 60:(1,0) +(1,0)$) {$1$};
+			\node [zero] (a7) at ($ (0,0) ! 1 ! 60:(1,0) +(7,0)$) {$1$};
+			\node [white,one] (a2) at   ($ (0,0) ! 1 ! 60:(1,0) +(2,0)$) {$2$};
+			\node [white,one] (a5) at   ($ (0,0) ! 1 ! 60:(1,0) +(5,0)$) {$1$};
+			\node [white,one] (a8) at  ($ (0,0) ! 1 ! 60:(1,0) +(8,0)$) {$2$};
+			%upper nodes
+			\node [zero] (b0) at  ($ (2,0) ! 2 ! 60:(3,0) $)        {$0$};
+			\node [zero] (b3) at  ($ (2,0) ! 2 ! 60:(3,0) +(3,0)$)  {$3$};
+			\node [zero] (b6) at ($ (2,0) ! 2 ! 60:(3,0) +(6,0)$)  {$0$};
+			\node [white,one] (b1) at   ($ (2,0) ! 2 ! 60:(3,0) +(1,0)$)  {$3$};
+			\node [white,one] (b4) at   ($ (2,0) ! 2 ! 60:(3,0) +(4,0)$)  {$0$};
+			\node [two] (b2) at   ($ (2,0) ! 2 ! 60:(3,0) +(2,0)$)  {$0$};
+			\node [two] (b5) at   ($ (2,0) ! 2 ! 60:(3,0) +(5,0)$)  {$3$};
+			%edges
+			%horizontal
+			\begin{pgfonlayer}{lineas}
+				\draw (0)--(6);
+				\draw (a0)--(a8);
+				\draw (b0)--(b6);
+				\foreach \x in {0,1,...,6}
+				{
+					\draw (\x)--(a\x);
+				}
+				\foreach \x/\y in {0/2,1/3,2/4,3/5,4/6,5/7,6/8}
+				{
+					\draw (b\x)--(a\y);
+				}
+				\foreach \x/\y in {0/1,1/2,2/3,3/4,4/5,5/6}
+				{
+					\draw (a\x)--(\y);
+				}
+				\foreach \x/\y in {0/3,1/4,2/5,3/6,4/7,5/8}
+				{
+					\draw (b\x)--(a\y);
+				}
+			\end{pgfonlayer}
+			\begin{pgfonlayer}{background layer}
+				\fill [fill=black,opacity=0.2] (0,0)--($ (0,0) ! 1 ! 60:(1,0) $) --($ (0,0) ! 1 ! 60:(1,0) +(2,0)$)--($ (2,0) ! 2 ! 60:(3,0) $)--($ (2,0) ! 2 ! 60:(3,0) +(6,0)$)--($ (0,0) ! 1 ! 60:(1,0) +(8,0)$)--($ (0,0) ! 1 ! 60:(1,0) +(6,0)$)--(6,0)--(0,0);
+			\end{pgfonlayer}	
+		\end{tikzpicture}
+	\label{fig:eg_torus}	
+\endgroup

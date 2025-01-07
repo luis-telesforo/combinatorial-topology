@@ -1,0 +1,32 @@
+\begingroup
+	\pgfdeclarelayer{background layer}
+	\pgfsetlayers{background layer,main}
+	\tikzstyle{zero}=[circle,draw=black,fill=white,inner sep=0pt,minimum size=2.5mm]
+	\tikzstyle{one}=[circle,draw=black,fill=black,inner sep=0pt,minimum size=2.5mm]
+	\tikzstyle{two}=[circle,draw=black,fill=gray,inner sep=0pt,minimum size=2.5mm]
+		\begin{tikzpicture}
+			\begin{pgfonlayer}{main}
+				%triangle
+				\node  (origin) at (0,0) {};
+				\node  (a) at (0,1) [one] {};
+				\node  (b) at ($ (origin) ! 1 ! 120:(a) $) [zero]{};
+				\node  (c) at ($ (origin) ! 1 ! -120:(a) $) [two]{};
+				%squares
+				\node  (x) at ($ (a) ! 1 ! -90:(b) $) [zero]{};
+				\node  (y) at ($ (b) ! 1 ! 90:(a) $) [one]{};
+				
+				\node  (1) at ($ (c) ! 1 ! -90:(a) $) [one]{};
+				\node  (2) at ($ (a) ! 1 ! 90:(c) $) [two]{};
+				
+				\node  (o) at ($ (c) ! 1 ! 90:(b) $) [zero]{};
+				\node  (p) at ($ (b) ! 1 ! -90:(c) $) [two]{};
+			\end{pgfonlayer}
+			\begin{pgfonlayer}{background layer}
+				\draw (a)--(x)--(y)--(b);
+				\draw (a)--(2)--(1)--(c);
+				\draw (b)--(p)--(o)--(c);
+				\draw (a)--(b)--(c)--(a);
+			\end{pgfonlayer}			
+		\end{tikzpicture}
+%	\label{fig:eg_non_rigid_protocol}	
+\endgroup

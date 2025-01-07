@@ -1,0 +1,68 @@
+\begingroup
+	\pgfdeclarelayer{background layer}
+	\pgfsetlayers{background layer,main}
+	\tikzstyle{wh}=[circle,draw=black,fill=white,inner sep=0pt,minimum size=2.5mm]
+	\tikzstyle{bl}=[circle,draw=black,fill=black,inner sep=0pt,minimum size=2.5mm]
+	\tikzstyle{gry}=[circle,draw=black,fill=gray,inner sep=0pt,minimum size=2.5mm]
+		\begin{tikzpicture}
+			\node[gry] (p) at (0,0) {$1$};
+			\node[white] (q) at (2.4,0) [bl] {$1$};
+			\node[wh] (r) at ($ (p) ! 1 ! 60:(q) $) {$1$};			
+			\node[gry] (pp) at ($ (q) ! 1 ! -60:(r) $) {$1$};
+			\node[white] (qq) at ($ (p) ! 1 ! 60:(r) $) [bl] {$1$};
+			\node[wh] (rr) at ($ (q) ! 1 ! 60:(p) $) {$1$};
+			\begin{pgfonlayer}{background layer}
+				\filldraw[opacity=.2] (p.center)
+				--(rr.center)
+				--(q.center)
+				--(pp.center)
+				--(r.center)
+				--(qq.center)
+				--(p.center);
+				\draw (p)--(q)--(r)--(p);
+			\end{pgfonlayer}
+
+	
+%mid triangle
+%external
+\node[bl] (Bq) at ($(p) ! 1/3 ! (q)$) {};
+\node[gry] (Bp) at ($(p) ! 2/3 ! (q)$) {};
+
+\node[wh] (Lr) at ($ (p) ! 1/3 ! (r) $) {};
+\node[gry] (Lp) at ($ (p) ! 2/3 ! (r) $) {};
+
+		
+\node[wh] (Rr) at ($ (q) ! 1/3 ! (r) $) {};
+\node[bl] (Rq) at ($ (q) ! 2/3 ! (r) $) {};
+%internal
+		%base
+\node (m) at ($(p) ! 1/2 ! (q)$) {};			
+\node [wh] (c) at ($(r) ! 5/6 ! (m)$) {};
+		%right			
+\node  (mm) at ($(r) ! 1/2 !(q)$) {};
+\node [gry] (cc) at ($(p) ! 5/6 ! (mm)$) {};
+		%left		
+\node  (mmm) at ($(r) ! 1/2 !(p)$) {};
+\node [bl] (ccc) at ($(q) ! 5/6 ! (mmm)$) {};
+		\foreach \a in {p,Bq,Bp,q,cc,ccc}		
+{
+	\draw (\a)-- (c);
+}
+%		%left
+\foreach \a in {q,Rr,Rq,r,c,ccc}		
+{
+	\draw (\a)-- (cc);
+}
+%		%right
+\foreach \a in {p,Lr,Lp,r,cc,c}		
+{
+	\draw (\a)-- (ccc);
+}
+\foreach \a/\b/\c in {pp/Rq/Rr,qq/Lr/Lp,rr/Bp/Bq}
+{
+\draw (\a)--(\b);
+\draw (\a)--(\c);
+}
+		\end{tikzpicture}
+	%\label{fig:eg_octahedral_sphere}	
+\endgroup

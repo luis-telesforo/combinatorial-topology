@@ -1,0 +1,28 @@
+\begingroup
+	\pgfdeclarelayer{background layer}
+	\pgfsetlayers{background layer,main}
+	\tikzstyle{zero}=[circle,draw=black,fill=white,inner sep=0pt,minimum size=2.5mm]
+	\tikzstyle{one}=[circle,draw=black,fill=black,inner sep=0pt,minimum size=2.5mm]
+	\tikzstyle{two}=[circle,draw=black,fill=gray,inner sep=0pt,minimum size=2.5mm]
+		\begin{tikzpicture}
+			\node at (0,0) [zero] {};
+			\node at (-1.732,1) [one] {};
+			\node at (1.732,1) [one] {};
+			\node at (1.732,-1) [two] {};
+			\node at (-1.732,-1) [two] {};
+			
+			\begin{pgfonlayer}{background layer}
+				\filldraw[black,opacity=0.2] (0,0)--(-1.732,1)--(-1.732,-1);
+				
+				\draw (0,0)--(-1.732,1);
+				\draw (0,0)--(-1.732,-1);
+				\draw (-1.732,1)--(-1.732,-1);
+				\draw (1.732,1)--(1.732,-1);
+	
+				\draw (0,0)--(1.732,1);
+				\draw (0,0)--(1.732,-1);
+				\filldraw[black,opacity=0.2] (0,0)--(1.732,1)--(1.732,-1);
+			\end{pgfonlayer}
+		\end{tikzpicture}
+	%\label{fig:eg_non_shell}	
+\endgroup

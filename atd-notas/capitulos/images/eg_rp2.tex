@@ -1,0 +1,26 @@
+\begingroup
+	\pgfdeclarelayer{background layer}
+	\pgfsetlayers{background layer,main}
+	\tikzstyle{wh}=[circle,draw=black,fill=white,inner sep=0pt,minimum size=2.5mm]
+	\tikzstyle{bl}=[circle,draw=black,fill=black,inner sep=0pt,minimum size=2.5mm]
+	\tikzstyle{gry}=[circle,draw=black,fill=gray,inner sep=0pt,minimum size=2.5mm]
+		\begin{tikzpicture}
+			\node[gry] (p) at (0,0) {};
+			\node[white] (q) at (2.4,0) [bl] {};
+			\node[wh] (r) at ($ (p) ! 1 ! 60:(q) $) {};			
+			\node[gry] (pp) at ($ (q) ! 1 ! -60:(r) $) {};
+			\node[white] (qq) at ($ (p) ! 1 ! 60:(r) $) [bl] {};
+			\node[wh] (rr) at ($ (q) ! 1 ! 60:(p) $) {};
+			\begin{pgfonlayer}{background layer}
+				\filldraw[opacity=.2] (p.center)
+				--(rr.center)
+				--(q.center)
+				--(pp.center)
+				--(r.center)
+				--(qq.center)
+				--(p.center);
+				\draw (p)--(q)--(r)--(p);
+			\end{pgfonlayer}
+		\end{tikzpicture}
+	%\label{fig:eg_octahedral_sphere}	
+\endgroup

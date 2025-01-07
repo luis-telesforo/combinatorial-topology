@@ -1,0 +1,69 @@
+\begingroup
+	\pgfdeclarelayer{background layer}
+	\pgfsetlayers{background layer,main}
+	\tikzstyle{zero}=[circle,draw=black,fill=white,inner sep=0pt,minimum size=2.5mm]
+	\tikzstyle{one}=[circle,draw=black,fill=black,inner sep=0pt,minimum size=2.5mm]
+	\tikzstyle{two}=[circle,draw=black,fill=gray,inner sep=0pt,minimum size=2.5mm]
+		\begin{tikzpicture}
+			\begin{pgfonlayer}{background layer}
+				\filldraw [fill=black,opacity=0.2] (0,0)--(2.4,0)--($ (0,0) ! 1 ! 60:(2.4,0) $)--(0,0);
+			\end{pgfonlayer}
+			%nodes
+			%external
+			%base
+			\node[two] (o) at (0,0) {};
+			\node[one] (cop) at (.8,0) {};
+			\node[two] (co) at (1.6,0) {};
+			\node[one] (op) at (2.4,0) {};
+			%left						
+			\node[zero] (cop1) at ($ (o) ! 1/3 ! 60:(op) $) {};
+			\node[two] (co1) at ($ (o) ! 2/3 ! 60:(op) $) {};
+			\node[zero] (opp) at ($ (o) ! 1 ! 60:(op) $) {};
+			%right			
+			\node[zero] (cop2) at ($ (op) ! 1/3 ! -60:(o) $) {};
+			\node[one] (co2) at ($ (op) ! 2/3 ! -60:(o) $) {};
+			%internal
+			%base			
+			\node [zero] (c) at ($(opp) ! 5/6 ! (1.2,0)$) {};
+			%right			
+			\node  (m) at ($(opp) ! 1/2 !(op)$) {};
+			\node [two] (cc) at ($(o) ! 5/6 ! (m)$) {};
+			%left		
+			\node  (mm) at ($(opp) ! 1/2 !(o)$) {};
+			\node [one] (ccc) at ($(op) ! 5/6 ! (mm)$) {};
+			%edges
+			%external
+			%left			
+			\draw  (o) -- (cop1) -- (co1) -- (opp);
+			%right			
+			\draw  (op) -- (cop2) -- (co2) -- (opp);
+			%base		
+			\draw (o) -- (cop) -- (co) -- (op);
+			%internal
+			%base
+			\foreach \a in {o,cop,co,op,cc,ccc}		
+			{
+				\draw (\a)-- (c);
+			}
+			%left
+			\foreach \a in {op,cop2,co2,opp,c,ccc}		
+			{
+				\draw (\a)-- (cc);
+			}
+			%right
+			\foreach \a in {o,cop1,co1,opp,cc,c}		
+			{
+				\draw (\a)-- (ccc);
+			}
+			%labels
+			\node (l) at (-1,0) {\tiny$\{a\}$}; 
+			\draw [->] (o)--(l);
+			
+			\node (ll) at (3,1.5) {\tiny$\{b,c\}$};
+			\draw [->] (cop2)--(ll);
+			
+			\node (lll) at (-1,1.5) {\tiny$\{a,b,c\}$};
+			\draw [->] (ccc)--(lll);
+		\end{tikzpicture}
+	%\label{fig:eg_final_configurations}	
+\endgroup

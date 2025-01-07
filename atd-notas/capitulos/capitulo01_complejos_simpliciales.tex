@@ -2,6 +2,7 @@
 
 
 \begin{document}
+	En este capítulo seguimos \cite{alberto:2023}.
 	\noindent Para cualquier conjunto $V$, su conjunto potencia es denotado por $\mathcal{P}(V)$. La carnalidad de $V$ es $\# V$
 	
 	\begin{definition}\label{def:simplicial_complex}
@@ -15,9 +16,50 @@
 	\end{remark}
 	
 	\section{Notación y nomenclatura estándar.}
-	\noindent Sea $K$ un complejo simplicial. Cada elemento de $K$ se llama \emph{simplejo}\footnote{También es común, quizás lo es más, utilizar el término \emph{cara}. No lo adopto porque tiene un peso geométrico muy grande: \textit{las caras del poliedro.} Aquí no busco } (\emph{simplex} y plural \emph{simplices} en inglés). La \emph{dimensión} de $\sigma$ es $\dim(\sigma)=\#\sigma-1$. Si $\dim(\sigma)=k$ decimos que $\sigma$ es un \emph{$k$-simplejo}. Un \emph{vértice} de un complejo simplicial es un $0$-simplejo; El conjunto de  $n$-simplejos de $K$ será denotado por $K_{n}$. 
+	\noindent Sea $K$ un complejo simplicial. Cada elemento de $K$ se llama \emph{simplejo}\footnote{También es común en español, quizás lo es más, utilizar el término \emph{cara}. No lo adopto porque viene del uso geométrico de esa palabra: \textit{las caras del poliedro.} Aunque es verdad que los complejos simpliciales pueden considerarse objetos geométricos, su combinatoria es más natural. Véanse \cite{kozlov:2008:combinatorial:alg:topo}, \cite{may:1967:simplicial}} (\emph{simplex} y plural \emph{simplices} en inglés). La \emph{dimensión} de $\sigma$ es $\dim(\sigma)=\#\sigma-1$. Si $\dim(\sigma)=k$ decimos que $\sigma$ es un \emph{$k$-simplejo}. Un \emph{vértice} de un complejo simplicial es un $0$-simplejo; El conjunto de  $n$-simplejos de $K$ será denotado por $K_{n}$. 
 	
-	La dimensión de $K$ es $\dim(K)=\max\{\dim(\sigma)\mid\sigma\in K\}$. Una \emph{faceta} (o \emph{careta}) of a simplicial complex is a maximal simplex with respect to contention. We say that a simplicial complex is \emph{pure} whenever all its facets have the same dimension.
+	La dimensión de $K$ es $\dim(K)=\max\{\dim(\sigma)\mid\sigma\in K\}$. Una \emph{faceta} (o \emph{careta} si se usa cara) de un complejo simplicial es un simplejo máximal con respecto a la contención; es decir, $\sigma$ es faceta si $\sigma\subseteq\tau$, entonces $\tau=\sigma$. Diremos que un complejo simplicial es \emph{puro} wsiempre que todas sus facetas tengan la misma dimensión.
 	
-	Simplicial complexes are combinatorial objects. It is customary to draw simplicial complexes in the following way. A point represents a vertex, an edge represents a $1$-simplex, a triangle represents a $2$-simplex, etc. In Figure~\ref{fig:eg_simplex} we found examples of simplices and in Figure~\ref{fig:eg_simplicial_complex} we present examples of simplicial complexes. We remark that the hollow triangle in Figure~\ref{fig:eg_non_pure}  is not a simplex. Also, it is worth to notice that from the picture only it is not clear whether the tetrahedron in Figure~\ref{fig:3_simplex} is hollow or not. For these reason we only draw simplicial complexes for illustrative purposes.
+	Los complejos simpliciales son objectos combinatorios. Usualmente se representan gráficamente como sigue. Un punto representa un vértice, las aristas,  $1$-simplejos; los triángulos representan $2$-simplejos, etc. En Figure~\ref{fig:eg_simplex} we found examples of simplices and in Figure~\ref{fig:eg_simplicial_complex} we present examples of simplicial complexes. We remark that the hollow triangle in Figure~\ref{fig:eg_non_pure}  is not a simplex. Also, it is worth to notice that from the picture only it is not clear whether the tetrahedron in Figure~\ref{fig:3_simplex} is hollow or not. For these reason we only draw simplicial complexes for illustrative purposes.
+	
+	\begin{figure}[h]
+		\centering
+		\begin{subfigure}{.3\textwidth}
+			\centering
+			\subimport{images/}{eg_1_simplex}
+			\caption{Un $1$-simplejo.}
+			\label{fig:1_simplex}
+		\end{subfigure}
+		\begin{subfigure}{.3\textwidth}
+			\centering
+			\subimport{images/}{eg_2_simplex}
+			\caption{Un $2$-simplejo.}
+			\label{fig:2_simplex}
+		\end{subfigure}
+		\begin{subfigure}{.3\textwidth}
+			\centering
+			\subimport{images/}{eg_3_simplex}
+			\caption{Un $3$-simplejo.}
+			\label{fig:3_simplex}
+		\end{subfigure}
+		\caption{Representación gráfica de alguno simplejos. el tetraedro en \subref{fig:3_simplex} es un sólido $3$-dimensional.}
+		\label{fig:eg_simplex}
+	\end{figure}
+	\begin{figure}[h]
+		\centering
+		\begin{subfigure}{.4\textwidth}
+			\centering
+			\subimport{images/}{eg_octahedral_sphere}
+			\caption{A pure simplicial complex.}
+			\label{fig:eg_octahedral_sphere}
+		\end{subfigure}
+		\begin{subfigure}{.4\textwidth}
+			\centering
+			\subimport{images/}{eg_non_pure_simplicial_complex}
+			\caption{A non-pure simplicial complex.}
+			\label{fig:eg_non_pure}
+		\end{subfigure}
+		\caption{Examples of simplicial complexes. All triangles in \subref{fig:eg_octahedral_sphere} are filled but the simplicial complex itself is not a $3$-dimensional solid.}
+		\label{fig:eg_simplicial_complex}
+	\end{figure}
 \end{document}

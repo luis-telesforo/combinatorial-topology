@@ -1,0 +1,27 @@
+\begingroup
+	\pgfdeclarelayer{background layer}
+	\pgfsetlayers{background layer,main}
+	\tikzstyle{zero}=[circle,draw=black,fill=white,inner sep=0pt,minimum size=2.5mm]
+	\tikzstyle{one}=[circle,draw=black,fill=black,inner sep=0pt,minimum size=2.5mm]
+	\tikzstyle{two}=[circle,draw=black,fill=gray,inner sep=0pt,minimum size=2.5mm]
+		\begin{tikzpicture}
+			\begin{pgfonlayer}{main}
+				\node  (origin) at (0,0) {};
+				\node  (a) at (0,1) [one] {};
+				\node  (b) at ($ (origin) ! 1 ! 120:(a) $) [zero]{};
+				\node  (c) at ($ (origin) ! 1 ! -120:(a) $) [two]{};
+				\node  (a') at (0,2) {$x_{0}$};
+				\node  (b') at ($ (origin) ! 2 ! 120:(a) $) {$x_{2}$};
+				\node  (c') at ($ (origin) ! 2 ! -120:(a) $) {$x_{1}$};
+				
+			\end{pgfonlayer}
+			\begin{pgfonlayer}{background layer}
+				\filldraw [fill=black,opacity=0.2] (0,1)--($ (0,0) ! 1 ! 120:(0,1) $)--($ (0,0) ! 1 ! -120:(0,1) $)--(0,1);
+				\draw (a)--(b)--(c)--(a);
+				\draw [<-] (a')--(0,0);
+				\draw [<-] (b')--(0,0);
+				\draw [<-] (c')--(0,0);
+			\end{pgfonlayer}			
+		\end{tikzpicture}
+%	\label{fig:eg_standard_2_simplex}	
+\endgroup

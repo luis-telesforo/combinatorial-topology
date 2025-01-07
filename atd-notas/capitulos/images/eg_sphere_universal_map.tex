@@ -1,0 +1,40 @@
+\begingroup
+	\pgfdeclarelayer{background layer}
+	\pgfdeclarelayer{lineas}
+	\pgfsetlayers{background layer,lineas,main}
+	\tikzstyle{zero}=[circle,draw=black,fill=white,inner sep=0pt,minimum size=3.5mm]
+	\tikzstyle{one}=[circle,draw=black,fill=black,inner sep=0pt,minimum size=2.5mm]
+	\tikzstyle{two}=[circle,draw=black,fill=gray,inner sep=0pt,minimum size=2.5mm]
+		\begin{tikzpicture}[scale=2]
+			\node (1) at (2,3) [zero] {02};
+			\node [white] (a) at (2.5,3.2) [one] {02};
+			\node (x) at (1,3) [two] {02};
+			\node (0) at (2.2,2.5) [zero] {13};
+			\node [white] (b) at (1.5,2) [one] {13};
+			\node (z) at (3,2) [two] {13};
+			
+			
+			\begin{pgfonlayer}{background layer}
+				\fill[gray,opacity=0.2](2,3)--(2.5,3.2)--(1,3)--(2,3);
+				\fill[black,opacity=0.2](2,3)--(1.5,2)--(1,3)--(2,3);
+				\fill[black,opacity=0.2](2,3)--(2.5,3.2)--(3,2)--(2,3);
+				\fill[gray,opacity=0.2](2,3)--(1.5,2)--(3,2)--(2,3);
+			\end{pgfonlayer}
+			
+			\draw (1)-- (a)--(x)--(1);
+			\draw (1) -- (b)--(x)--(1);
+			\draw[opacity=0.2](x)--(b);
+			\draw[dotted](0)--(x);		
+			\draw[opacity=0.2](x)--(a);
+			\draw[dotted](a) -- (0);
+			
+			
+			\draw(1)-- (a)--(z)--(1);
+			\draw(1) -- (b)--(z)--(1);
+			\draw[opacity=0.2](z)--(b);
+			\draw [dotted](0)--(z);
+			\draw [dotted](b) -- (0);
+		
+		\end{tikzpicture}
+	%\label{fig:eg_sphere_universal_map}	
+\endgroup
