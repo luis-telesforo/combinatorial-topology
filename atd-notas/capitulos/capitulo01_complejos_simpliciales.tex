@@ -15,12 +15,13 @@
 		En la Definición~\ref{def:simplicial_complex} tenemos dos complejos simpliciales que son importantes. El primero es el complejo simplicial \emph{vano} (\emph{void} en inglés), es decir $\emptyset\subseteq\mathcal{P}(V)$. El segundo es el complejo simplicial \emph{vacío} (\emph{empty} en inglés): $\{\emptyset\}$ \cite[Remark 2.3]{kozlov:2008:combinatorial:alg:topo}. 
 	\end{remark}
 	
-	\section{Notación y nomenclatura estándar.}
+	\section{Notación y nomenclatura estándar}
+	
 	\noindent Sea $K$ un complejo simplicial. Cada elemento de $K$ se llama \emph{simplejo}\footnote{También es común en español, quizás lo es más, utilizar el término \emph{cara}. No lo adopto porque viene del uso geométrico de esa palabra: \textit{las caras del poliedro.} Aunque es verdad que los complejos simpliciales pueden considerarse objetos geométricos, su combinatoria es más natural. Véanse \cite{kozlov:2008:combinatorial:alg:topo}, \cite{may:1967:simplicial}} (\emph{simplex} y plural \emph{simplices} en inglés). La \emph{dimensión} de $\sigma$ es $\dim(\sigma)=\#\sigma-1$. Si $\dim(\sigma)=k$ decimos que $\sigma$ es un \emph{$k$-simplejo}. Un \emph{vértice} de un complejo simplicial es un $0$-simplejo; El conjunto de  $n$-simplejos de $K$ será denotado por $K_{n}$. 
 	
 	La dimensión de $K$ es $\dim(K)=\max\{\dim(\sigma)\mid\sigma\in K\}$. Una \emph{faceta} (o \emph{careta} si se usa cara) de un complejo simplicial es un simplejo máximal con respecto a la contención; es decir, $\sigma$ es faceta si $\sigma\subseteq\tau$, entonces $\tau=\sigma$. Diremos que un complejo simplicial es \emph{puro} wsiempre que todas sus facetas tengan la misma dimensión.
 	
-	Los complejos simpliciales son objectos combinatorios. Usualmente se representan gráficamente como sigue. Un punto representa un vértice, las aristas,  $1$-simplejos; los triángulos representan $2$-simplejos, etc. En Figure~\ref{fig:eg_simplex} we found examples of simplices and in Figure~\ref{fig:eg_simplicial_complex} we present examples of simplicial complexes. We remark that the hollow triangle in Figure~\ref{fig:eg_non_pure}  is not a simplex. Also, it is worth to notice that from the picture only it is not clear whether the tetrahedron in Figure~\ref{fig:3_simplex} is hollow or not. For these reason we only draw simplicial complexes for illustrative purposes.
+	Los complejos simpliciales son objectos combinatorios. Usualmente se representan gráficamente como sigue. Un punto representa un vértice, las aristas,  $1$-simplejos; los triángulos representan $2$-simplejos, etc. En la Figura~\ref{fig:eg_simplex} encontramos ejemplos de simplejos y en la Figura~\ref{fig:eg_simplicial_complex}, de complejos simpliciales. Nótese que el triángulo hueco en la Figura~\ref{fig:eg_non_pure} no es un simplejo. También, es importante notar que del dibujo solo es imposible determinar si el tetraedro de la Figura~\ref{fig:3_simplex} es un $3$-simplejo o es la unión de 4 $2$-simplejos. Es por esto último que sólo representamos con fines ilustrativos.
 	
 	\begin{figure}[h]
 		\centering
@@ -62,4 +63,37 @@
 		\caption{Examples of simplicial complexes. All triangles in \subref{fig:eg_octahedral_sphere} are filled but the simplicial complex itself is not a $3$-dimensional solid.}
 		\label{fig:eg_simplicial_complex}
 	\end{figure}
+	
+	Sea $\sigma$ un simplejo. Vamos a sobrecargar la notación y usaremos $\sigma$ para denotar al complejo simplicial $\mathcal{P}(\sigma)$ como a la única faceta de tal complejo simplicial. En este sentido, todo simplejo es un complejo simplicial.
+	
+	\begin{exercise}
+		¿Cuántos $k$-simplejos tiene un $n$-simplejo?
+	\end{exercise}
+	
+	El \emph{complejo simplicial generado} por $F\subseteq\mathcal{P}(V)$ es el complejo simplicial mínimo con respecto a contener todos los simplejos $\sigma\in F$. Tal complejo simplicial es denotado por 
+	\[
+	\bigcup F=\bigcup_{\sigma\in F}\sigma.
+	\]
+	
+	\begin{exercise}
+		Muestra que todo complejo simplicial es generado por sus facetas.
+	\end{exercise}
+	
+	Un \emph{subcomplejo} de un complejo simplicial $K$ es un subconjunto de $K$ que es un complejo simplicial. El \emph{$n$-esqueleto} de $K$ es el subcomplejo de $K$ generado por todos los $k$-simplejos en $K$ con $k\leq n$ y es denotado por $\operatorname{skel}_{n}(K)$.
+	
+	\begin{exercise}
+		Muestra que $\operatorname{skel}_{n}(K)$ es puro de dimensión $n$.
+	\end{exercise}
+	
+	\begin{exercise}
+		Muestra que $\operatorname{skel}_{n}(K)=K_{n}$ si y sólo sí $n=-1$ o $K$ es vano. ¿Qué pasaría con esta equivalencia si en la Definición~\ref{def:simplicial_complex} eliminamos los complejos simpliciales vacío y vano?
+	\end{exercise}	
+	
+	Un \emph{simplejo frontera} de un $k$-simplejo $\sigma$, es un $k-1$-simplejo $\tau\in\sigma$. La \emph{frontera} de $\sigma$ es $\partial\sigma=\bigcup\{\tau\mid\tau\text{ es un simplejo frontera de }\sigma\}$.
+	
+	\begin{exercise}
+		$\partial\sigma$ es un complejo simplicial.
+	\end{exercise}
+	
+	\section{Realización geométrica}
 \end{document}
