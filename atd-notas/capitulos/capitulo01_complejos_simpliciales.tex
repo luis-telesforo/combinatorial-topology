@@ -2,7 +2,7 @@
 
 
 \begin{document}
-	En este capítulo seguimos \cite{alberto:2023}.
+	En este capítulo seguimos \cite{alberto:2023} y \cite{kozlov:2008:combinatorial:alg:topo} como introducción a los complejos simpliciales.
 	\noindent Para cualquier conjunto $V$, su conjunto potencia es denotado por $\mathcal{P}(V)$. La carnalidad de $V$ es $\# V$
 	
 	\begin{definition}\label{def:simplicial_complex}
@@ -96,4 +96,78 @@
 	\end{exercise}
 	
 	\section{Realización geométrica}
+	\noindent Intuitivamente, el complejo simplicial de la Figura~\ref{fig:eg_octahedral_sphere} es una $2$-esfera. Esta sección formaliza tal intuición. Usamos $\mathbb{R}^{V}$ para denotar el $\mathbb{R}$ espacio vectorial con base $V$, en particular, $\mathbb{R}^{n}$ es el espacio euclidiano de $n$ dimensiones. Siempre consideramos $\mathbb{R}^{V}$ como espacio topológico con la topología inducida por la métrica euclidiana.
+	
+	\begin{definition}\label{def:affine_ind_set}
+		Un \emph{conjunto afinmente independiente} en $\mathbb{R}^{n}$ es un conjunto $A=\{v_{0},\ldots,v_{k}\}$ tal que para cada $t_{i},s_{i}\geq0$ con 
+		\[
+		\sum_{i=0}^{k}s_{i}=\sum_{i=0}^{k}t_{i}=1,
+		\]si 
+		\[
+		\sum_{i=0}^{k}s_{i}v_{i}=\sum_{i=0}^{k}t_{i}v_{i},
+		\]entonces $s_{i}=t_{i}$ para cada $i$. Un vector $x\in\mathbb{R}^{n}$ es una \emph{combinación afín} de $A$ si $x=\sum_{i=0}^{k}s_{i}v_{i}$ con $\sum_{i=0}^{k}s_{i}=1$ y $s_{i}\geq0$ para cada $i$. La \emph{cápsula convexa} (\emph{convex hull} en inglés) de $A$ es el conjunto de todas las combinaciones afines de $A$.
+	\end{definition}
+	
+	\begin{exercise}
+		Demuestra que todo conjunto linealmente independiente de $\mathbb{R}^{n}$ es afín independiente.
+	\end{exercise}
+	
+	Tomamos las definiciones~\ref{def:standard_V_simplex} y~\ref{def:geom_real} de \cite[Section 2.2.1]{kozlov:2008:combinatorial:alg:topo}.
+	
+	\begin{definition}\label{def:standard_V_simplex}
+		Sea $V$ un conjunto finito. El \emph{$V$-simplejo estándar} es la cápsula convexa de la base ortnonormal estándar de $\mathbb{R}^{V}$. 
+	\end{definition}
+	En la Figura~\ref{fig:eg_standard_2_simplex}, tenemos el $V$-simplejo estándar para $V=\{x_{0},x_{1},x_{2}\}$. 
+	\begin{figure}
+		\centering
+		\import{images/}{eg_standard_2_simplex}
+		\caption{El $V$-simplejo estándar para $V=\{x_{0,}x_{1},x_{2}\}$.}
+		\label{fig:eg_standard_2_simplex}
+	\end{figure}
+	
+	\begin{definition}\label{def:geom_real}
+		Sea $K$ un complejo simplicial. Consideremos la unión de todos los $\sigma$-simplejos estándar en $\mathbb{R}^{K_{0}}$ con $\sigma\in K$. Este conjunto con la topología de subespacio de $\mathbb{R}^{K_{0}}$ es la \emph{realización geométrica estándar} de $K$.  Cualquier espacio homeomorfo a la realización geométrica estándar de $K$ como $|K|$ y la llamaremos la \emph{realización geométrica} de $K$.
+	\end{definition}
+	
+	\begin{remark}\label{rem:geom_realization}
+		La realización geométrica es definida mediante los $V$-simplejos estándar. Como ellos tienen la topología de subespacio de $\mathbb{R}^{V}$ siempre supondremos que $|K|$ tiene una métrica que le induce la topología adecuada. También, cualquier afirmación topológica hecha sobre un complejo simplicial estará hecha sobre su realización geométrica.. 
+	\end{remark}
+	
+	\begin{exercise}\label{rem:geom_realization_colimit}
+		Sea $K$ un complejo simplicial. En este ejercicio veremos cómo podemos estudiar complejos simpliciales infinitos y sus realizaciones geométricas. La equivalencia de la última parte sirve como definición de la topología de la realización geométrica de complejos simpliciales infinitos \cite[p. 8]{munkres:1984:algebraic:topology}.
+		\begin{enumerate}
+			\item Prueba que si $\sigma\in K$, entonces $|\sigma|\subseteq |K|$.
+			\item Muestra que la realización geométrica de cualquier simplejo es un espacio compacto.
+			\item Demuestra que si $\sigma\in K$, entonces $|\sigma|$ es un conjunto cerrado de $|K|$.
+			\item Demuestra que $C\subseteq|K|$ es cerrado si y solo si $C\cap|\sigma|$ es cerrado para cada $\sigma\in\Delta$.
+		\end{enumerate}
+	\end{exercise}
+	
+	\section{Funciones simpliciales}
+	\noindent Si $f\colon X\rightarrow Y$ es una función, usamos $f(A)$ para denotar la imagen de $A\subseteq X$ bajo $f$.
+	\begin{definition}\label{def:simplicial_map}
+		Dados dos complejos simpliciales $K$ and $L$, una \emph{función simplicial} de $K$ a $L$ es una función $f\colon K_{0}\rightarrow L_{0}$ tal que si $\sigma\in K$ entonces $f(\sigma)\in L$.
+	\end{definition}
+	Observe that a simplicial map induces a map $f\colon\Delta\rightarrow \Gamma$. In this way, when we say that $f\colon\Delta\rightarrow \Gamma$ is a simplicial map, we mean that it is induced by a simplicial map. It is easy to verify that the composition of two simplicial maps is a simplicial map and that the identity of $S_{0}(\Delta)$ induces the identity simplicial map of $\Delta$.
+	
+	\begin{remark}\label{rem:coeherent_gluing}
+		Not every vertex map induces a simplicial map. Let $\sigma$ be a $2$-simplex. Despite $S_{0}(\sigma)=S_{0}(\partial\sigma)$, the identity map of $S_{0}(\sigma)$ does not induce a simplicial map from $\sigma$ into $\partial(\sigma)$. 
+	\end{remark}
+	
+	\begin{figure}
+		\centering
+		\begin{subfigure}{.4\textwidth}
+			\centering
+			\import{images/}{eg_2_simplex}
+			\caption{$\sigma$}
+		\end{subfigure}
+		\begin{subfigure}{.4\textwidth}
+			\centering
+			\import{images/}{eg_hollow_triangle}
+			\caption{$\partial\sigma$}
+			\label{fig:eg_hollow_triangle}
+		\end{subfigure}
+		\caption{The image of $\sigma$ under the identity of $S_{0}(\sigma)$ is not a simplex in $\partial\sigma$.}
+		\label{fig:not_simplicial_map}
+	\end{figure}
 \end{document}
