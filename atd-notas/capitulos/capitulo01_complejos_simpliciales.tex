@@ -146,28 +146,116 @@
 	\section{Funciones simpliciales}
 	\noindent Si $f\colon X\rightarrow Y$ es una función, usamos $f(A)$ para denotar la imagen de $A\subseteq X$ bajo $f$.
 	\begin{definition}\label{def:simplicial_map}
-		Dados dos complejos simpliciales $K$ and $L$, una \emph{función simplicial} de $K$ a $L$ es una función $f\colon K_{0}\rightarrow L_{0}$ tal que si $\sigma\in K$ entonces $f(\sigma)\in L$.
+		Dados dos complejos simpliciales $K$ and $L$, una \emph{función simplicial} \footnote{Es usual en la literatura en inglés encontrar esto como \emph{simplicial map}. Yo mismo les llamo así a veces.}de $K$ a $L$ es una función $f\colon K_{0}\rightarrow L_{0}$ tal que si $\sigma\in K$ entonces $f(\sigma)\in L$.
 	\end{definition}
-	Observe that a simplicial map induces a map $f\colon\Delta\rightarrow \Gamma$. In this way, when we say that $f\colon\Delta\rightarrow \Gamma$ is a simplicial map, we mean that it is induced by a simplicial map. It is easy to verify that the composition of two simplicial maps is a simplicial map and that the identity of $S_{0}(\Delta)$ induces the identity simplicial map of $\Delta$.
-	
-	\begin{remark}\label{rem:coeherent_gluing}
-		Not every vertex map induces a simplicial map. Let $\sigma$ be a $2$-simplex. Despite $S_{0}(\sigma)=S_{0}(\partial\sigma)$, the identity map of $S_{0}(\sigma)$ does not induce a simplicial map from $\sigma$ into $\partial(\sigma)$. 
+	\begin{remark}
+		Toda función simplicial $f\colon K_{0}\rightarrow L_{0}$ induce una función $f\colon K\rightarrow L$. Así, cuando decimos que $f\colon K\rightarrow L$ es una función simplicial, lo que queremos decir es que es inducida por un mapa simplicial. 
 	\end{remark}
+	
+	\begin{exercise}
+		Demuestre que la clase de complejos simpliciales $\mathcal{CS}$ junto con las funciones simpliciales es una categoría; es decir, demuestre que la composición de funciones simpliciales es simplicial y que para cada $K\in\mathcal{CS}$ existe una función simplicial $1_{K} \colon K\rightarrow K$ tal que $1_{K}\circ f = f$ y $g\circ 1_{K} = g$ para cualesquiera funciones simpliciales $f\colon L\rightarrow K$ y $g\colon K\rightarrow L$.
+	\end{exercise}
+	
+	\begin{exercise}
+		¿Quiénes son $1_{\emptyset}$ y $1_{\{\emptyset\}}$? ¿Tu prueba del ejercicio anterior consideró esto?
+	\end{exercise}
+	
+	\begin{exercise}\label{rem:coeherent_gluing}
+		Muestra que no toda función entre los vértices de dos complejos simpliciales induce una función simplicial. 
+	\end{exercise}
+	
+	\section{Subdivisiones}
+	\begin{definition}\label{def:subdivision}
+		Una \emph{subdivisión} de un complejo simplicial $K$ es un complejo simplicial $K'$ tal que para $|K|$ y $|K'|$ se cumple lo siguiente:
+		
+		\begin{enumerate}
+			\item La realización geométrica de cada simplejo en $K'$ está contenida en la realización geométrica de algún simplejo de $K$.
+			\item Para cada $\sigma\in K$, hay un subcomplejo $\sigma'$ de $K'$ tal que $|\sigma|=|\sigma'|$.
+		\end{enumerate}
+	\end{definition}
+	
+	Los siguientes ejercicios están diseñados para una mejor y pronta comprensión de la definición de arriba.
+	
+	\begin{exercise}
+		Muestra que si $K'$ es una subdivisión de $K$, entonces cada vértice de $K$ debe ser un vértice de $K'$. En otras palabras $K_{0}\subseteq K'_{0}$.
+	\end{exercise}
+	
+	\begin{exercise}
+		Representa gráficamente los siguientes complejos simpliciales
+		\begin{enumerate}
+			\item  $K=\{\emptyset, \{a\}, \{b\}, \{a,b\}\}\}$.
+			\item  $K'=\{\emptyset, \{a\}, \{b\}, \{c\}, \{a,c\}, \{c,b\}\}\}$
+		\end{enumerate}
+		Muestra que $K'$ es una subdivisión de $K$.
+	\end{exercise}
+	
+	\begin{exercise}
+		Muestra que la imagen en la Figura~\ref{fig:eg_barycentric} es una subdivisión de un $2$-simplejo.
+	\end{exercise}
 	
 	\begin{figure}
 		\centering
-		\begin{subfigure}{.4\textwidth}
-			\centering
-			\import{images/}{eg_2_simplex}
-			\caption{$\sigma$}
-		\end{subfigure}
-		\begin{subfigure}{.4\textwidth}
-			\centering
-			\import{images/}{eg_hollow_triangle}
-			\caption{$\partial\sigma$}
-			\label{fig:eg_hollow_triangle}
-		\end{subfigure}
-		\caption{The image of $\sigma$ under the identity of $S_{0}(\sigma)$ is not a simplex in $\partial\sigma$.}
-		\label{fig:not_simplicial_map}
+		\import{images/}{eg_barycentric}
+		\caption{La primera subdivisión baricéntrica de un $2$-simplejo.}
+		\label{fig:eg_barycentric}
 	\end{figure}
+	
+	Intuitivamente, una subdivisión de $K$ se obtiene agregando simplejos internos a (algunos de) los simplejos de $K$. Sin embargo, esto debe hacerse con cuidado. En la Figura~\ref{fig:eg_non_subdivision} vemos que este procedimiento fue realizado sin \textbf{preservar la estructura combinatoria} del complejo simplicial original.
+	
+	\begin{figure}
+		\centering
+		\import{images/}{eg_non_subdivision}
+		\caption{The first barycentric subdivision of a $2$-simplex.}
+		\label{fig:eg_non_subdivision}
+	\end{figure}
+
+	Intuitively this means that a subdivision is obtained from a simplicial complex adding to each simplex new vertices and simplices internally preserving their combinatorial structure. The most common subdivisions are stellar and barycentric subdivisions. We only recall the latter.
+	
+	\begin{definition}\label{def:barycentric_subdivision}
+		The \emph{first barycentric subdivision} of a simplicial complex $\Delta$ is the order complex of the face poset of $\Delta$ and it is denoted by $\operatorname{Bar}(\Delta)$. The \emph{$N$-th barycentric subdivision} of $\Delta$ is the first barycentric subdivision of $\operatorname{Bar}^{N-1}(\Delta)$.
+	\end{definition}
+	In other words simplices of $\operatorname{Bar}(\Delta)$ are chains of simplices of $\Delta$. In Figure~\ref{fig:eg_barycentric} we find the usual picture of a barycentric subdivision. The central vertex, the barycenter of the triangle, corresponds to the unique facet of the $2$-simplex. In general, the barycenter of a simplex corresponds to the unique facet of the simplex.
+	
+	
+	Recall that the simplicial complex $\Delta$ is a \emph{triangulation} of the topological space $X$ whenever $X\cong|\Delta|$.
+	
+	\section{Teorema de aproximación simplicial}
+	
+	El teorema de aproximación simplicial nos asegura que dada cualquier función continua $f$ entre las realizaciones geométricas de dos complejos simpliciales,  podemos encontrar una función simplicial de una subdivisión del dominio de $f$ al codominio de $f$ que se ``parece'' a $f$. Recall that the diameter $\operatorname{diam}(X)$ of a set $X\subseteq\mathbb{R}^{k}$ is $\sup\{d(x,y)\mid x,y\in X\}$.
+	\begin{definition}\label{def:mesh}
+		A subdivision operator $\operatorname{Div}$ is \emph{mesh shrinking} if for any $\epsilon>0$ and each simplicial complex $\Delta$ there is $N\in\mathbb{N}$ such that \[\sup\{\operatorname{diam}(\sigma)\mid\sigma\in\operatorname{Div}^{N}(\Delta)\}<\varepsilon.\]
+	\end{definition}
+	The proof of the Simplicial approximation theorem needs the Lebesgue number of an open cover of a compact space.
+	
+	\begin{definition}\label{def:lebesgue}
+		Let $K$ be a compact subspace of $\mathbb{R}^{k}$ and $\mathcal{U}$ be an open cover of $K$. We say $\lambda>0$ is a \emph{Lebesgue number} of $\mathcal{U}$ if for any $x\in K$ and $\varepsilon<\lambda$ the open ball $B_{\epsilon}(x)$ lies in some element of $\mathcal{U}$.
+	\end{definition}
+	\begin{remark}\label{rem:stars}
+		Recall that the open star of a vertex $v$ in a simplicial complex $\Delta$ is $\operatorname{St}(v)=\bigcup_{v\in\sigma}|\sigma|^{\circ}$. It is well known that $\bigcap_{v\in \sigma}\operatorname{St}(v)\neq\emptyset$ if and only if $\sigma\in\Delta$ 
+	\end{remark}
+	Recall all our simplicial complexes are finite, a more general form of the following can be found in \cite[Theorem 16.5]{munkres:1984:algebraic:topology} 
+	\begin{theorem}[Simplicial approximation theorem]\label{thm:simp_app}
+		Let $f\colon|\Delta|\rightarrow|\Gamma|$ be a continuous map between simplicial complexes. If $\operatorname{Div}$ is mesh shrinking, there are $N\in\mathbb{N}$ and a simplicial map $\overline{f}\colon\operatorname{Div}^{N}(\Delta)\rightarrow\Gamma$ such that $f(\operatorname{St}(v))\subseteq\operatorname{St}(\overline{f}(v))$ for each $v\in S_{0}(\operatorname{Div}^{N}(\Delta))$.
+	\end{theorem}
+	
+	\begin{proof}
+		Assume both $|\Delta|$ and $|\Gamma|$ have a metric giving them the adequate topology. The open stars $\operatorname{St}(w)$ with $w\in S_{0}(\Gamma)$ form an open cover of $|\Gamma|$. Let $\lambda$ be the Lebesgue number of that cover. Because $f$ is continuous and $|\Delta|$ is compact there is $\delta>0$ such that $f(B_{\delta}(x))\subseteq B_{\lambda}(f(x))\subseteq \operatorname{St}(w)$ for some $w\in S_{0}(\Gamma)$. Choose $N$ such that $\sup\{\operatorname{diam}(\sigma)\mid\sigma\in\operatorname{Div}^{N}(\Delta)\}<\frac{\delta}{2}$. Define $\overline{f}\colon\operatorname{Div}^{N}(\Delta)\rightarrow\Gamma$ as $\overline{f}(v)=w$ for some $w$ such that $f(\operatorname{St}(v))\subseteq \operatorname{St}(w)$. This is a well defined simplicial map from Remark~\ref{rem:stars}.
+	\end{proof}
+	Finally we offer a well known property of barycentric subdivisions \cite[Theorem 15.4]{munkres:1984:algebraic:topology}
+	\begin{proposition}\label{prop:bar_mesh}
+		The barycentric subdivision is mesh-shrinking
+	\end{proposition}
+	
+	\begin{proof}
+		Let $\sigma$ be a $k$-simplex. By definition $S_{0}(\operatorname{Bar}(\sigma))=\{\tau\mid\tau\in \sigma\}$. We identify $\tau$ with $\sum_{v\in\tau}\frac{v}{\#\tau}\in|\sigma|$, in other words $\tau$ is the barycenter of $|\tau|$.
+		
+		For each $v\in \sigma$, \begin{align}
+			d(\sigma,v)=&d(\sum_{w\in\sigma}\frac{1}{k+1}w,\sum_{w\in\sigma'}\frac{1}{k+1}v)\\
+			\leq& \sum_{w\in\sigma}d(\frac{1}{k+1}w,\frac{1}{k+1}v)\\
+			=&\frac{1}{k+1}\sum_{w\in\sigma}d(w,v)\\
+			\leq&\frac{k}{k+1}\sup\{d(w,v)\mid w\in\sigma\}\\
+			=&\frac{k}{k+1}\operatorname{diam}(\sigma).		
+		\end{align}
+		Since $\operatorname{diam}(\sigma)$ is reached by some pair $v,w\in\sigma$, from the above calculation we conclude that $\sup\{\operatorname{diam}(\tau)\mid\tau\in\operatorname{Bar}(\sigma)\}\leq\frac{k}{k+1}\operatorname{diam}(\sigma)$. Since $\frac{k}{k+1}<1$ the result follows.
+	\end{proof}
 \end{document}
