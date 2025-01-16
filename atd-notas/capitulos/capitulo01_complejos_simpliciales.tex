@@ -164,9 +164,16 @@
 		Muestra que no toda función entre los vértices de dos complejos simpliciales induce una función simplicial. 
 	\end{exercise}
 	
+	\begin{exercise}
+		Muestra que toda función simplicial $f\colon K\rightarrow L$ induce una función continua $|f|\colon |K|\rightarrow |L|$ dada por 
+		\[
+		|f|(\sum_{i=0}^{k}s_{i}v_{i})= \sum_{i=0}^{k}s_{i}f(v_{i}).
+		\]
+	\end{exercise}
+	
 	\section{Subdivisiones}
 	\begin{definition}\label{def:subdivision}
-		Una \emph{subdivisión} de un complejo simplicial $K$ es un complejo simplicial $K'$ tal que para $|K|$ y $|K'|$ se cumple lo siguiente:
+		Una \emph{subdivisión} de un complejo simplicial $K$ es un complejo simplicial $K'$ tal que existen subdivisiones $|K|$ y $|K'|$ tales que:
 		
 		\begin{enumerate}
 			\item La realización geométrica de cada simplejo en $K'$ está contenida en la realización geométrica de algún simplejo de $K$.
@@ -177,7 +184,11 @@
 	Los siguientes ejercicios están diseñados para una mejor y pronta comprensión de la definición de arriba.
 	
 	\begin{exercise}
-		Muestra que si $K'$ es una subdivisión de $K$, entonces cada vértice de $K$ debe ser un vértice de $K'$. En otras palabras $K_{0}\subseteq K'_{0}$.
+		Si $K'$ es una subdivisión de $K$, entonces $|K|\cong|K'|$.
+	\end{exercise}
+	
+	\begin{exercise}
+		Muestra que si $K'$ es una subdivisión de $K$ entonces todo vértice de $K$ 
 	\end{exercise}
 	
 	\begin{exercise}
@@ -200,14 +211,11 @@
 		\label{fig:eg_barycentric}
 	\end{figure}
 	
-	Intuitivamente, una subdivisión de $K$ se obtiene agregando simplejos internos a (algunos de) los simplejos de $K$. Sin embargo, esto debe hacerse con cuidado. En la Figura~\ref{fig:eg_non_subdivision} vemos que este procedimiento fue realizado sin \textbf{preservar la estructura combinatoria} del complejo simplicial original.
+	Intuitivamente, una subdivisión de $K$ se obtiene agregando simplejos internos a (algunos de) los simplejos de $K$. Sin embargo, esto debe hacerse con cuidado. En la Figura~\ref{fig:eg_non_subdivision} vemos que este procedimiento fue realizado sin \textbf{preservar la estructura combinatoria} del complejo simplicial original. Esto quiere decir que aunque el espacio topológico asociado al objeto en esa figura (es decir el triángulo) es la realización geométrica del $2$-simplejo, como objeto combinatorio no es un complejo simplicial. 
 	
-	\begin{figure}
-		\centering
-		\import{images/}{eg_non_subdivision}
-		\caption{The first barycentric subdivision of a $2$-simplex.}
-		\label{fig:eg_non_subdivision}
-	\end{figure}
+	\begin{exercise}
+		Demuestra que si $L$ es una subdivisión de $K$ y $K$ lo es de $L$, entonces $K$
+	\end{exercise}
 
 	Intuitively this means that a subdivision is obtained from a simplicial complex adding to each simplex new vertices and simplices internally preserving their combinatorial structure. The most common subdivisions are stellar and barycentric subdivisions. We only recall the latter.
 	
