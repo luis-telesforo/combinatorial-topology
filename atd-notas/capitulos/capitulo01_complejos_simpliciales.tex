@@ -188,10 +188,6 @@
 	\end{exercise}
 	
 	\begin{exercise}
-		Muestra que si $K'$ es una subdivisión de $K$ entonces todo vértice de $K$ 
-	\end{exercise}
-	
-	\begin{exercise}
 		Representa gráficamente los siguientes complejos simpliciales
 		\begin{enumerate}
 			\item  $K=\{\emptyset, \{a\}, \{b\}, \{a,b\}\}\}$.
@@ -214,13 +210,13 @@
 	Intuitivamente, una subdivisión de $K$ se obtiene agregando simplejos internos a (algunos de) los simplejos de $K$. Sin embargo, esto debe hacerse con cuidado. En la Figura~\ref{fig:eg_non_subdivision} vemos que este procedimiento fue realizado sin \textbf{preservar la estructura combinatoria} del complejo simplicial original. Esto quiere decir que aunque el espacio topológico asociado al objeto en esa figura (es decir el triángulo) es la realización geométrica del $2$-simplejo, como objeto combinatorio no es un complejo simplicial. 
 	
 	\begin{exercise}
-		Demuestra que si $L$ es una subdivisión de $K$ y $K$ lo es de $L$, entonces $K$
+		Demuestra que si $L$ es una subdivisión de $K$ y $K$ lo es de $L$, entonces existe un isomorfismo $K\cong L$.
 	\end{exercise}
 
-	Intuitively this means that a subdivision is obtained from a simplicial complex adding to each simplex new vertices and simplices internally preserving their combinatorial structure. The most common subdivisions are stellar and barycentric subdivisions. We only recall the latter.
+	Aunque existen diferentes subdivisiones generadas con un método, nosotros solamente estudiaremos las siguientes.
 	
 	\begin{definition}\label{def:barycentric_subdivision}
-		The \emph{first barycentric subdivision} of a simplicial complex $\Delta$ is the order complex of the face poset of $\Delta$ and it is denoted by $\operatorname{Bar}(\Delta)$. The \emph{$N$-th barycentric subdivision} of $\Delta$ is the first barycentric subdivision of $\operatorname{Bar}^{N-1}(\Delta)$.
+		La \emph{primera subdivisión baricéntrica} de un complejo simplicial $K$ es el complejo de orden del complejo orden de caras de $F$ y lo denotamos mediante $\operatorname{Bar}(\Delta)$. La \emph{$N$-ésima subdivisión baricéntrica} de $K$ es la primera subdivisión baricéntrica de $\operatorname{Bar}^{N-1}(\Delta)$.
 	\end{definition}
 	In other words simplices of $\operatorname{Bar}(\Delta)$ are chains of simplices of $\Delta$. In Figure~\ref{fig:eg_barycentric} we find the usual picture of a barycentric subdivision. The central vertex, the barycenter of the triangle, corresponds to the unique facet of the $2$-simplex. In general, the barycenter of a simplex corresponds to the unique facet of the simplex.
 	
