@@ -6,7 +6,7 @@
 	\noindent Para cualquier conjunto $V$, su conjunto potencia es denotado por $\mathcal{P}(V)$. La carnalidad de $V$ es $\# V$
 	
 	\begin{definition}\label{def:simplicial_complex}
-		Un \emph{complejo simplicial} sobre un conjunto $V$ es un conjunto finito $K\subseteq\mathcal{P}(V)\setminus\{\emptyset\}$ cerrado bajo subconjuntos.
+		Un \emph{complejo simplicial} sobre un conjunto $V$ es un conjunto finito $K\subseteq\mathcal{P}(V)$ cerrado bajo subconjuntos.
 	\end{definition}
 	
 	Formalmente, la definición de arriba corresponde a la de los \emph{complejos simpliciales abstractos y finitos} \cite[Definition 2.1]{kozlov:2008:combinatorial:alg:topo}; dado que no estudiaremos otro tipo de complejos simpliciales omitimos los otros adjetivos. 
@@ -139,7 +139,7 @@
 			\item Prueba que si $\sigma\in K$, entonces $|\sigma|\subseteq |K|$.
 			\item Muestra que la realización geométrica de cualquier simplejo es un espacio compacto.
 			\item Demuestra que si $\sigma\in K$, entonces $|\sigma|$ es un conjunto cerrado de $|K|$.
-			\item Demuestra que $C\subseteq|K|$ es cerrado si y solo si $C\cap|\sigma|$ es cerrado para cada $\sigma\in\Delta$.
+			\item Demuestra que $C\subseteq|K|$ es cerrado si y solo si $C\cap|\sigma|$ es cerrado para cada $\sigma\in K$.
 		\end{enumerate}
 	\end{exercise}
 	
@@ -213,53 +213,108 @@
 		Demuestra que si $L$ es una subdivisión de $K$ y $K$ lo es de $L$, entonces existe un isomorfismo $K\cong L$.
 	\end{exercise}
 
-	Aunque existen diferentes subdivisiones generadas con un método, nosotros solamente estudiaremos las siguientes.
+	Aunque existen diferentes subdivisiones generadas con un método, nosotros solamente estudiaremos la subdivisión baricéntrica. Para ello necesitamos algunas definiciones relacionadas a órdenes parciales.
+	
+	\begin{definition}\label{defn:poset}
+		Un \emph{conjunto parcialmente ordenado} (abreviado \emph{orden parcial}) es una pareja $(P,<)$ donde $P$ es un conjunto y $<$ es una relación binaria sobre $P$ que es transitiva, irreflexiva y asimétrica. Simplificaremos esto y diremos que $P$ es un orden parcial y $<$ es el \emph{orden} de $P$. Una \emph{cadena} $\sigma$ en un orden parcial $P$ es subconjunto de $P$ tal que la restricción de $<$ a $
+		\sigma$ satisface \emph{tricotomía}, es decir $(C,<)$ es un \emph{conjunto totalmente ordenado} (abreviado \emph{orden total}).
+	\end{definition}
+	Aunque no profundizaremos en la teoría de órdenes parciales, para poder entender más fácilmente qué es el complejo de orden de un orden parcial, usaremos la representación gráfica de los órdenes parciales. 
+	\begin{definition}\label{defn:Hasse}
+		Sean $P$ un orden parcial y $x<y$ en $P$. Decimos que $y$ \emph{cubre} $x$ si no existe $z\in P$ tal que $x<z<y$. El \emph{diagrama de Hasse} $\mathcal{H}$ de $P$ es la gráfica con conjunto de vértices $P$ y aristas definidos por pares ${x,y}$ tales que $x$ cubre $y$ o viceversa.
+	\end{definition}
+	
+	\begin{figure}[h]
+		\centering
+		\begin{subfigure}{.3\textwidth}
+			\centering
+			\import{images/}{eg_hasse_graded_poset}
+			\caption{$a<b$, $c<d$}
+			\label{fig:hasse_graded_poset}
+		\end{subfigure}
+		\begin{subfigure}{.3\textwidth}
+			\centering
+			\import{images/}{eg_hasse_graded_poset_min}
+			\caption{$x<a$, $x<c$}
+			\label{fig:hasse_graded_poset_min}
+		\end{subfigure}
+		\begin{subfigure}{.3\textwidth}
+			\centering
+			\import{images/}{eg_hasse_graded_poset_shell}
+			\caption{$c<b$}
+			\label{fig:hasse_graded_poset_shell}
+		\end{subfigure}
+		\caption{Diagramas de Hasse de tres órdenes parciales. En \subref{fig:hasse_graded_poset} tenemos dos relaciones de cobertura solamente. Agregamos dos relaciones más y obtenemos \subref{fig:hasse_graded_poset_min}. Con una relación más se obtiene \subref{fig:hasse_graded_poset_shell}}
+		\label{fig:hasse}
+	\end{figure}
+	
+	
+	\begin{definition}
+		El \emph{complejo de orden} de un orden parcial $P$ es el complejo simplicial $\Delta(P)$ generado por las cadenas maximales de $P$. En otras palabras $\sigma\subseteq P$ es un simplejo de $\Delta(P)$ si y solo si es un orden total con el orden heredado de $P$.
+	\end{definition}
+	
+	\begin{exercise}
+		Dibuja los complejos de orden de los órdenes de la Figura~\ref{fig:hasse}.
+	\end{exercise}
 	
 	\begin{definition}\label{def:barycentric_subdivision}
-		La \emph{primera subdivisión baricéntrica} de un complejo simplicial $K$ es el complejo de orden del complejo orden de caras de $F$ y lo denotamos mediante $\operatorname{Bar}(\Delta)$. La \emph{$N$-ésima subdivisión baricéntrica} de $K$ es la primera subdivisión baricéntrica de $\operatorname{Bar}^{N-1}(\Delta)$.
-	\end{definition}
-	In other words simplices of $\operatorname{Bar}(\Delta)$ are chains of simplices of $\Delta$. In Figure~\ref{fig:eg_barycentric} we find the usual picture of a barycentric subdivision. The central vertex, the barycenter of the triangle, corresponds to the unique facet of the $2$-simplex. In general, the barycenter of a simplex corresponds to the unique facet of the simplex.
+		La \emph{primera subdivisión baricéntrica} de un complejo simplicial $K$ es el complejo de orden de $K$ visto como orden parcial y lo denotamos mediante $\operatorname{Bar}(K)$. La \emph{$N$-ésima subdivisión baricéntrica} de $K$ es la primera subdivisión baricéntrica de $\operatorname{Bar}^{N-1}(K)$.
+	\end{definition} 
 	
-	
-	Recall that the simplicial complex $\Delta$ is a \emph{triangulation} of the topological space $X$ whenever $X\cong|\Delta|$.
+	En otras palabras, los simplejos de $\operatorname{Bar}(K)$ son cadenas de simplejos en $K$. En la Figura~\ref{fig:eg_barycentric} encontramos la forma usual de representar gráficamente una subdivisión baricéntrica. El vértice central, el baricentro del triángulo, corresponde a la única faceta del $2$-simplejo. En general, el baricentro de un simplejo corresponde a su única faceta. 
 	
 	\section{Teorema de aproximación simplicial}
 	
-	El teorema de aproximación simplicial nos asegura que dada cualquier función continua $f$ entre las realizaciones geométricas de dos complejos simpliciales,  podemos encontrar una función simplicial de una subdivisión del dominio de $f$ al codominio de $f$ que se ``parece'' a $f$. Recall that the diameter $\operatorname{diam}(X)$ of a set $X\subseteq\mathbb{R}^{k}$ is $\sup\{d(x,y)\mid x,y\in X\}$.
-	\begin{definition}\label{def:mesh}
-		A subdivision operator $\operatorname{Div}$ is \emph{mesh shrinking} if for any $\epsilon>0$ and each simplicial complex $\Delta$ there is $N\in\mathbb{N}$ such that \[\sup\{\operatorname{diam}(\sigma)\mid\sigma\in\operatorname{Div}^{N}(\Delta)\}<\varepsilon.\]
+	El teorema de aproximación simplicial nos asegura que dada cualquier función continua $f$ entre las realizaciones geométricas de dos complejos simpliciales,  podemos encontrar una función simplicial de una subdivisión del dominio de $f$ al codominio de $f$ que se ``parece'' a $f$. Por supuesto, para formalizar esto necesitamos varias definiciones.
+	
+	\begin{definition}\label{def:diameter}
+		El \emph{diámetro} $\operatorname{diam}(X)$ de un conjunto $X\subseteq\mathbb{R}^{k}$ es $\sup\{d(x,y)\mid x,y\in X\}$.
 	\end{definition}
-	The proof of the Simplicial approximation theorem needs the Lebesgue number of an open cover of a compact space.
+	
+	Aunque no hemos definido qué es una operación para obtener subdivisiones, intuitivamente, son métodos que permiten subdividir cualquier simplejo iterativamente. Un ejemplo son las subdivisiones baricéntricas.
+	
+	\begin{definition}\label{def:mesh}
+		Una operación para obtener subdivisiones $\operatorname{Div}$ \emph{refina} si para cada $\epsilon>0$ y cada complejo simplicial $K$ existe $N\in\mathbb{N}$ tal que \[\sup\{\operatorname{diam}(\sigma)\mid\sigma\in\operatorname{Div}^{N}(K)\}<\varepsilon.\]
+	\end{definition}
+	La prueba del teorema de aproximación simplicial necesita el número de Lebesgue de una cubierta de espacio compacto.
 	
 	\begin{definition}\label{def:lebesgue}
-		Let $K$ be a compact subspace of $\mathbb{R}^{k}$ and $\mathcal{U}$ be an open cover of $K$. We say $\lambda>0$ is a \emph{Lebesgue number} of $\mathcal{U}$ if for any $x\in K$ and $\varepsilon<\lambda$ the open ball $B_{\epsilon}(x)$ lies in some element of $\mathcal{U}$.
+		Sean $C$ un subespacio compacto de $\mathbb{R}^{k}$ y $\mathcal{U}$ una cubierta abierta de $C$. Decimos que $\lambda>0$ es un \emph{número de Lebesgue} de $\mathcal{U}$ si para cada $x\in C$ y $\varepsilon<\lambda$ la bola abierta $B_{\epsilon}(x)$ está contenida en algún elemento de $\mathcal{U}$.
 	\end{definition}
-	\begin{remark}\label{rem:stars}
-		Recall that the open star of a vertex $v$ in a simplicial complex $\Delta$ is $\operatorname{St}(v)=\bigcup_{v\in\sigma}|\sigma|^{\circ}$. It is well known that $\bigcap_{v\in \sigma}\operatorname{St}(v)\neq\emptyset$ if and only if $\sigma\in\Delta$ 
-	\end{remark}
-	Recall all our simplicial complexes are finite, a more general form of the following can be found in \cite[Theorem 16.5]{munkres:1984:algebraic:topology} 
-	\begin{theorem}[Simplicial approximation theorem]\label{thm:simp_app}
-		Let $f\colon|\Delta|\rightarrow|\Gamma|$ be a continuous map between simplicial complexes. If $\operatorname{Div}$ is mesh shrinking, there are $N\in\mathbb{N}$ and a simplicial map $\overline{f}\colon\operatorname{Div}^{N}(\Delta)\rightarrow\Gamma$ such that $f(\operatorname{St}(v))\subseteq\operatorname{St}(\overline{f}(v))$ for each $v\in S_{0}(\operatorname{Div}^{N}(\Delta))$.
+	
+	\begin{definition}
+		La \emph{estrella abierta} de un vértice $v$ de un complejo simplicial $K$ es $\operatorname{St}(v)=\bigcup_{v\in\sigma}|\sigma|^{\circ}$.
+	\end{definition}
+	
+	\begin{exercise}\label{rem:stars}
+		 Demuestra que $\bigcap_{v\in \sigma}\operatorname{St}(v)\neq\emptyset$ si y solo si $\sigma\in K$ 
+	\end{exercise}
+	Recordemos que nuestros complejos simpliciales son finitos. Una versión general del siguiente teorema puede encontrarse en \cite[Theorem 16.5]{munkres:1984:algebraic:topology} 
+	\begin{theorem}[Aproximación simplicial]\label{thm:simp_app}
+		Sea $f\colon|K|\rightarrow|L|$ una función continua entre las realizaciones geométricas de dos complejos simpliciales. Si $\operatorname{Div}$ refina, entonces existen $N\in\mathbb{N}$ y una función simplicial $\overline{f}\colon\operatorname{Div}^{N}(K)\rightarrow L$ tales que $f(\operatorname{St}(v))\subseteq\operatorname{St}(\overline{f}(v))$ para cada $v\in S_{0}(\operatorname{Div}^{N}(K))$.
 	\end{theorem}
 	
 	\begin{proof}
-		Assume both $|\Delta|$ and $|\Gamma|$ have a metric giving them the adequate topology. The open stars $\operatorname{St}(w)$ with $w\in S_{0}(\Gamma)$ form an open cover of $|\Gamma|$. Let $\lambda$ be the Lebesgue number of that cover. Because $f$ is continuous and $|\Delta|$ is compact there is $\delta>0$ such that $f(B_{\delta}(x))\subseteq B_{\lambda}(f(x))\subseteq \operatorname{St}(w)$ for some $w\in S_{0}(\Gamma)$. Choose $N$ such that $\sup\{\operatorname{diam}(\sigma)\mid\sigma\in\operatorname{Div}^{N}(\Delta)\}<\frac{\delta}{2}$. Define $\overline{f}\colon\operatorname{Div}^{N}(\Delta)\rightarrow\Gamma$ as $\overline{f}(v)=w$ for some $w$ such that $f(\operatorname{St}(v))\subseteq \operatorname{St}(w)$. This is a well defined simplicial map from Remark~\ref{rem:stars}.
+		Supongamos que tenemos métricas para $|K|$ y $|L|$ que nos dan la topología adecuada. Las estrellas abiertas $\operatorname{St}(w)$ con $w\in L_{0}$ forman una cubierta abierta de $|L|$. Sea $\lambda$ un número de Lebesgue de esa cubierta. Dado que $f$ es continua y $|K|$ es compacto existe $\delta>0$ such that $f(B_{\delta}(x))\subseteq B_{\lambda}(f(x))\subseteq \operatorname{St}(w)$ para algún $w\in L_{0}$. Elijamos $N$ tal que $\sup\{\operatorname{diam}(\sigma)\mid\sigma\in\operatorname{Div}^{N}(K)\}<\frac{\delta}{2}$. Definamos $\overline{f}\colon\operatorname{Div}^{N}(K)\rightarrow L$ mediante $\overline{f}(v)=w$ para algún $w$ tal que $f(\operatorname{St}(v))\subseteq \operatorname{St}(w)$. Este es una función simplicial bien definida por Ejercicio~\ref{rem:stars}.
 	\end{proof}
-	Finally we offer a well known property of barycentric subdivisions \cite[Theorem 15.4]{munkres:1984:algebraic:topology}
+	Finalmente, tenemos que la subdivisión baricéntrica refina \cite[Theorem 15.4]{munkres:1984:algebraic:topology}; por tanto, podemos usar el teorema anterior con subdivisiones baricéntricas.
 	\begin{proposition}\label{prop:bar_mesh}
-		The barycentric subdivision is mesh-shrinking
+		La subdivisión baricéntrica refina.
 	\end{proposition}
 	
 	\begin{proof}
-		Let $\sigma$ be a $k$-simplex. By definition $S_{0}(\operatorname{Bar}(\sigma))=\{\tau\mid\tau\in \sigma\}$. We identify $\tau$ with $\sum_{v\in\tau}\frac{v}{\#\tau}\in|\sigma|$, in other words $\tau$ is the barycenter of $|\tau|$.
+		Sea $\sigma$ un $k$-simplejo. Por definición $(\operatorname{Bar}(\sigma))_{0}=\{\tau\mid\tau\in \sigma\}$. Identificamos $\tau$ con $\sum_{v\in\tau}\frac{v}{\#\tau}\in|\sigma|$, en otras palabras $\tau$ es el baricentro de $|\tau|$.
 		
-		For each $v\in \sigma$, \begin{align}
+		Para cada $v\in \sigma$, \begin{align}
 			d(\sigma,v)=&d(\sum_{w\in\sigma}\frac{1}{k+1}w,\sum_{w\in\sigma'}\frac{1}{k+1}v)\\
 			\leq& \sum_{w\in\sigma}d(\frac{1}{k+1}w,\frac{1}{k+1}v)\\
 			=&\frac{1}{k+1}\sum_{w\in\sigma}d(w,v)\\
 			\leq&\frac{k}{k+1}\sup\{d(w,v)\mid w\in\sigma\}\\
 			=&\frac{k}{k+1}\operatorname{diam}(\sigma).		
 		\end{align}
-		Since $\operatorname{diam}(\sigma)$ is reached by some pair $v,w\in\sigma$, from the above calculation we conclude that $\sup\{\operatorname{diam}(\tau)\mid\tau\in\operatorname{Bar}(\sigma)\}\leq\frac{k}{k+1}\operatorname{diam}(\sigma)$. Since $\frac{k}{k+1}<1$ the result follows.
+		Dado que $\operatorname{diam}(\sigma)$ se alcanca para algún par $v,w\in\sigma$, de los cálculos de arriba concluimos que $\sup\{\operatorname{diam}(\tau)\mid\tau\in\operatorname{Bar}(\sigma)\}\leq\frac{k}{k+1}\operatorname{diam}(\sigma)$. Debido a que $\frac{k}{k+1}<1$ la proposición queda probada.
 	\end{proof}
+	\begin{exercise}
+		Muestra con todo detalle la Proposición~\ref{prop:bar_mesh}.
+	\end{exercise}
 \end{document}
