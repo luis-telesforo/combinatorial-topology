@@ -276,7 +276,7 @@
 	\begin{definition}\label{def:mesh}
 		Una operación para obtener subdivisiones $\operatorname{Div}$ \emph{refina} si para cada $\epsilon>0$ y cada complejo simplicial $K$ existe $N\in\mathbb{N}$ tal que \[\sup\{\operatorname{diam}(\sigma)\mid\sigma\in\operatorname{Div}^{N}(K)\}<\varepsilon.\]
 	\end{definition}
-	La prueba del teorema de aproximación simplicial necesita el número de Lebesgue de una cubierta de espacio compacto.
+	La prueba del teorema de aproximación simplicial necesita un número de Lebesgue de una cubierta de espacio compacto.
 	
 	\begin{definition}\label{def:lebesgue}
 		Sean $C$ un subespacio compacto de $\mathbb{R}^{k}$ y $\mathcal{U}$ una cubierta abierta de $C$. Decimos que $\lambda>0$ es un \emph{número de Lebesgue} de $\mathcal{U}$ si para cada $x\in C$ y $\varepsilon<\lambda$ la bola abierta $B_{\epsilon}(x)$ está contenida en algún elemento de $\mathcal{U}$.
@@ -312,9 +312,19 @@
 			\leq&\frac{k}{k+1}\sup\{d(w,v)\mid w\in\sigma\}\\
 			=&\frac{k}{k+1}\operatorname{diam}(\sigma).		
 		\end{align}
-		Dado que $\operatorname{diam}(\sigma)$ se alcanca para algún par $v,w\in\sigma$, de los cálculos de arriba concluimos que $\sup\{\operatorname{diam}(\tau)\mid\tau\in\operatorname{Bar}(\sigma)\}\leq\frac{k}{k+1}\operatorname{diam}(\sigma)$. Debido a que $\frac{k}{k+1}<1$ la proposición queda probada.
+		Dado que $\operatorname{diam}(\sigma)$ se alcanza para algún par $v,w\in\sigma$, de los cálculos de arriba concluimos que $\sup\{\operatorname{diam}(\tau)\mid\tau\in\operatorname{Bar}(\sigma)\}\leq\frac{k}{k+1}\operatorname{diam}(\sigma)$. Debido a que $\frac{k}{k+1}<1$ la proposición queda probada.
 	\end{proof}
 	\begin{exercise}
 		Muestra con todo detalle la Proposición~\ref{prop:bar_mesh}.
+	\end{exercise}
+	
+	\section*{Miscelánea de ejercicios}
+	
+	\begin{exercise}
+		Muestra que para todo comple simplicial $\operatorname{skel}_{n}(K)\leq\operatorname{skel}_{n+1}(K)$
+	\end{exercise}
+	
+	\begin{exercise}
+		Prueba que para todo compacto $C\subseteq \mathbb{R}^{N}$ y toda cubierta abierta de $C$ existe un número de Lebesgue.
 	\end{exercise}
 \end{document}

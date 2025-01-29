@@ -1,0 +1,143 @@
+\documentclass{standalone}
+
+\begin{document}
+	En este capítulo presentaremos una versión del Teorema del Nervio. Este resultado es multifacético en el sentido de que hay diferentes enunciados no equivalentes pero que esencialmente dicen que algunas propiedades topológicas de un espacio son compartidas por un complejo simplicial  que se obtiene de una cubierta del espacio original.
+	
+	La razón para no proveer una prueba de este teorema es que cualquiera de sus enunciados requiere material de topología algebraica que no vamos a revisar. A pesar de ello, para entender su enunciado necesitamos diferentes conceptos que ilustraremos antes del teorema del nervio.  La mayoría de las pruebas que se omiten y no se dejan como ejercicio se pueden hallar en \cite{dieck:2008:algebraic:topology,munkres:1984:algebraic:topology,rotman:1988:algebraic:topology}. 
+	
+	\section*{Homotopía}
+	Empezamos con conexidad por trayectorias y hmotopías (\cite[Section 2.1]{dieck:2008:algebraic:topology}).
+	
+	\begin{definition}\label{defn:path}
+		Sean $X$ un espacio topológico, $x,y\in X$ y $I=[0,1]\subseteq\mathbb{R}$. Una \emph{trayectoria} en $X$ de $x$ a $y$ es una función continua $u\colon I\rightarrow X$ tal que $u(0)=x$ y $u(1)=y$. En este caso decimos que $x$ es \emph{conectable por trayectorias} con $y$
+	\end{definition}
+	
+	\begin{exercise}
+		Usa lo siguiente para demostrar que ser conectable por trayectorias es una relación de equivalencia.
+		\begin{itemize}
+			\item La función constante es una trayectoria.
+			\item La trayectoria inversa $u^{-}$ de $u$ es la composición $u\circ \operatorname{inv}$ donde $\operatorname{inv}(t) = 1-t$ para cada $t\in[0,1]$.
+			\item La función que manda $t$ a $2t$ puede usarse para reparametrizar cualquier trayectoria de manera que la traza de $u$ se recorra en la mitad del tiempo.
+		\end{itemize}
+		Las clases de equivalencia bajo esta relación se llaman las componentes conexas por trayectorias de $X$.
+	\end{exercise}
+	
+	\begin{definition}\label{defn:0_connected}
+		El conjunto de las componentes conexas por trayectorias de $X$ es denotado por $\pi_{0}(X)$. Decimos que $X$ es \emph{$0$-conexo} si $\#\pi_{0}(X)=1$.
+	\end{definition}
+	
+	
+	\begin{definition}\label{defn:homotopy}
+		Let $X$ and $Y$ be topological spaces. Two continuous functions $f,g\colon X\rightarrow Y$ are \emph{homotopic} ($f\simeq g$) if there is a \emph{homotopy} $H$ from $f$ to $g$, that is a continuous function $H\colon X\times I\rightarrow Y$ such that $H|_{X\times\{0\}}=f$ and $H|_{X\times\{1\}}=g$. We usually write $H_{t}=H|_{X\times\{t\}}$.
+	\end{definition}
+	
+	\begin{remark}\label{rem:homotopy_rel_equiv}
+		In the same way we proved that being connectable by paths is an equivalence relation, being homotopic is an equivalence relation.
+	\end{remark}
+	%	
+	%	\begin{proposition}\label{prop:homotopies_preserve_composition}
+		%		If $f\simeq f'$ and $g\simeq g'$ with $f\colon X\rightarrow Y$ and $g:Y\rightarrow Z$, then $g\circ f\simeq g'\circ f'$.
+		%	\end{proposition}
+	%	
+	%	\begin{proof}
+		%		Assume $F$ and $G$ homotopies from $f$ to $f'$ and from $g$ to $g'$ respectively. Then $H_{t}=G_{t}\circ F_{t}$ defines the desired homotopy.
+		%	\end{proof}
+	
+	\begin{definition}\label{defn:homotopy_equivalence}
+		A \emph{homotopy inverse} of a continuous map $f:X\rightarrow Y$ is a continuous function $g:Y\rightarrow X$ such that $f\circ g$ and $g\circ f$ are homotopic to the identity. In such case $f$ is a \emph{homotopy equivalence} and $X$ and $Y$ are called \emph{homotopy equivalent} or \emph{have the same homotopy type}. When $X$ is homotopy equivalent to a point is called \emph{contractible}.
+	\end{definition}
+	
+	Let $X,Y\in\Top$, $x\in X$ and $y\in Y$, a continuous function $f\colon X\rightarrow Y$ is called a pointed function if $f(x)=y$. The set of pointed functions from $(X,x)$ to $(Y,y)$ is denoted by $\Top^{0}((X,x),(Y,y))$.
+	
+	\begin{definition}\label{def:rel_homotopy}
+		Let $f,g\in\Top^{0}((X,x),(Y,y))$. A \emph{pointed homotopy} from $f$ to $g$ is a homotopy $H$ from $f$ to $g$ such that $H_{t}(x)=y$. 
+	\end{definition}
+	
+	The above concepts and properties are generalized straightforward for pointed homotopies. So, $\simeq$ is an equivalence relation on $\Top^{0}((X,x),(Y,y))$.
+	
+	In what follows, the material has been taken from \cite[Chapter 11]{rotman:1988:algebraic:topology}.  When $X=S^{n}$ in $(X,x)$ we assume that $x=(1,0,\ldots,0)$.
+	
+	
+	\begin{definition}\label{def:homotopy_groups}
+		Let $n>0$. The \emph{$n$-th homotopy group} of $(X,x)$ with $x\in X$ is $\pi_{n}(X,x)=\Top^{0}((S^{n},\ast),(X,x))/\simeq$.
+	\end{definition}
+	
+	\begin{remark}\label{rem:groups}
+		We will not prove $\pi_{n}(X,x)$ is in fact a group, a complete proof can be found in \cite[Section 6.1]{dieck:2008:algebraic:topology} and \cite[Theorem 11.4 and Corollary 11.17]{rotman:1988:algebraic:topology}.
+	\end{remark}
+	
+	Of course, if $x$ and $y$ are not in the same path component of $X$ then it could be possible that $\pi_{n}(X,x)\ncong\pi_{n}(X,y)$. However, when $x$ and $y$ lie in the same path component $\pi_{n}(X,x)\cong\pi_{n}(X,y)$ (\cite[Theorem 11.24]{rotman:1988:algebraic:topology}). Thus we write $\pi_{n}(X)$ instead of $\pi_{n}(X,x)$.
+	
+	In this work the following is essential, the proof can be found in \cite[Corollary 11.26]{rotman:1988:algebraic:topology}.
+	\begin{theorem}\label{thm:inv_homotopy}
+		If $X$ and $Y$ are homotopy equivalent, then $\pi_{n}(X)\cong\pi_{n}(Y)$
+	\end{theorem}
+	
+	
+	\begin{definition}\label{defn:1_connected}
+		A topological space $X$ is \emph{$n$-connected} if $\#\pi_{0}(X)=1$ and $\pi_{i}(X)$ is a trivial group for $i\leq n$. We say that $X\in\Top$ is \emph{$(-1)$-connected} if it is non-empty.
+	\end{definition}
+	
+	Theorem~\ref{thm:inv_homotopy} implies the following.
+	
+	\begin{lemma}\label{lem:contract}
+		If $X$ is contractible, then it is $n$-connected for every $n\in \mathbb{N}$.
+	\end{lemma}
+	
+	
+	\begin{proof}
+		Since a contractible space is homotopy equivalent to a point, from Theorem~\ref{thm:inv_homotopy}, it is enough to note that $\Top^{0}((S^{n},\ast),(x,x))$ is a singleton.
+	\end{proof}
+	
+	\begin{proposition}\label{prop:cone_contract}
+		The cone $X\ast a$ is contractible. Therefore an $n$-ball is contractible.
+	\end{proposition}
+	
+	\begin{proof}
+		The homotopy between the constant map $X\ast a\rightarrow a$ and the inclusion $a\rightarrow X\ast a$ is given by the line segments joining $a$ with $x\in X$.
+	\end{proof}
+	
+	We will prove that several spaces are $n$-connected for some $n$ but our strategy needs to show explicitly that they are $1$-connected. So, we recall a result that simplifies the calculation of $\pi_{1}(X)$. A simple proof of the next result can be found in \cite[Theorem 2.6.2]{dieck:2008:algebraic:topology}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%Esto est'a perfecto
+	\begin{theorem}[Seifert-van Kampen]\label{thm:van_kampen}
+		Let $X\in\Top$ and assume that $X^{\circ}_{0}\cup X^{\circ}_{1}=X$. If $X_{v}$ and $X_{0}\cap X_{1}$ are $0$-connected, then
+		\begin{center}
+			\begin{tikzcd}
+				\pi_{1}(X_{0}\cap X_{1}) \arrow[r, "(i_{1})_{\ast}"] \arrow[d,"(i_{0})_{\ast}"'] & \pi_{1}(X_{1}) \arrow[d, "(j_{1})_{\ast}"] \\
+				\pi_{1}(X_{0}) \arrow[r, "(j_{0})_{\ast}"] & \pi_{1}(X)
+			\end{tikzcd}
+		\end{center}
+		is a pushout in the category of groups.
+	\end{theorem}
+	\begin{remark}\label{rem:free_product}
+		The pushout in the category of groups is the free product with amalgamation \cite[Chapter 11]{rotman:1995:groups}. However, we do not need its construction but the following two properties under the hypothesis of Theorem~\ref{thm:van_kampen}:
+		\begin{enumerate}
+			\item If $\pi_{1}(X_{1})$ and $\pi_{1}(X_{0})$ are trivial then $\pi_{1}(X)$ is trivial trivial.
+			\item If $\pi_{1}(X_{0}\cap X_{1})$ is trivial, then $\pi_{1}(X)$ is the free product of $\pi_{1}(X_{1})$ and $\pi_{1}(X_{0})$.
+		\end{enumerate}
+	\end{remark} 
+	
+	\begin{theorem}\label{thm:pi_1_spheres}
+		For $n>1$, the following equation holds: $\pi_{1}(S^{n})=0$
+	\end{theorem}
+	
+	\begin{proof}
+		The sphere $S^{n}$ is the union of two $n$-balls whose intersection is $S^{n-1}$. Since an $n$-ball is contractible, the equation $\pi_{1}(S^{n})=0$ follows from Theorem~\ref{thm:van_kampen} and Remark~\ref{rem:free_product}.
+	\end{proof}
+	
+	\begin{definition}\label{defn:wedge}
+		Let $\mathcal{X}$ be a family of non-empty topological spaces and let $f\in\prod_{X\in\mathcal{X}}X$. The \emph{wedge sum}  of $\mathcal{X}$ is the quotient \[\bigvee_{X\in\mathcal{X}}X=\bigsqcup_{X\in\mathcal{X}}X/\{f(X)\mid X\in\mathcal{X}\};\] that is, in the sum we identify all the selected points.
+	\end{definition}
+	
+	
+	\begin{proposition}\label{prop:wedge_homotopy}
+		The fundamental group of the wedge sum of two topological spaces is the free product of their fundamental groups. Thus, if two spaces are $1$-connected then their wedge sum is $1$-connected.
+	\end{proposition}
+	
+	\begin{proof}
+		From Theorem~\ref{thm:van_kampen} and Lemma~\ref{lem:contract} the fundamental group of $X\vee Y$ is the pushout of $\pi_{1}(X)\leftarrow \{1\}\rightarrow \pi_{1}(Y)$. From Remark~\ref{rem:free_product}, we have finished.
+	\end{proof}
+	
+\end{document}
