@@ -82,14 +82,14 @@
 	Un \emph{subcomplejo} de un complejo simplicial $K$ es un subconjunto de $K$ que es un complejo simplicial. El \emph{$n$-esqueleto} de $K$ es el subcomplejo de $K$ generado por todos los $k$-simplejos en $K$ con $k\leq n$ y es denotado por $\operatorname{skel}_{n}(K)$.
 	
 	\begin{exercise}
-		Muestra que $\operatorname{skel}_{n}(K)$ es puro de dimensión $n$.
+		Muestra que en general $\operatorname{skel}_{n}(K)$ no es puro de dimensión $n$; es decir, $\operatorname{skel}_{n}(K)$ puede contener facetas de dimensión $k < n$.
 	\end{exercise}
 	
 	\begin{exercise}
 		Muestra que $\operatorname{skel}_{n}(K)=K_{n}$ si y sólo sí $n=-1$ o $K$ es vano. ¿Qué pasaría con esta equivalencia si en la Definición~\ref{def:simplicial_complex} eliminamos los complejos simpliciales vacío y vano?
 	\end{exercise}	
 	
-	Un \emph{simplejo frontera} de un $k$-simplejo $\sigma$, es un $k-1$-simplejo $\tau\in\sigma$. La \emph{frontera} de $\sigma$ es $\partial\sigma=\bigcup\{\tau\mid\tau\text{ es un simplejo frontera de }\sigma\}$.
+	Un \emph{simplejo frontera} de un $k$-simplejo $\sigma$, es un $(k-1)$-simplejo $\tau\in\sigma$. La \emph{frontera} de $\sigma$ es $\partial\sigma=\bigcup\{\tau\mid\tau\text{ es un simplejo frontera de }\sigma\}$.
 	
 	\begin{exercise}
 		$\partial\sigma$ es un complejo simplicial.
@@ -205,6 +205,13 @@
 		\import{images/}{eg_barycentric}
 		\caption{La primera subdivisión baricéntrica de un $2$-simplejo.}
 		\label{fig:eg_barycentric}
+	\end{figure}
+	
+	\begin{figure}
+		\centering
+		\import{images/}{eg_non_subdivision}
+		\caption{La primera subdivisión baricéntrica de un $2$-simplejo.}
+		\label{fig:eg_non_subdivision}
 	\end{figure}
 	
 	Intuitivamente, una subdivisión de $K$ se obtiene agregando simplejos internos a (algunos de) los simplejos de $K$. Sin embargo, esto debe hacerse con cuidado. En la Figura~\ref{fig:eg_non_subdivision} vemos que este procedimiento fue realizado sin \textbf{preservar la estructura combinatoria} del complejo simplicial original. Esto quiere decir que aunque el espacio topológico asociado al objeto en esa figura (es decir el triángulo) es la realización geométrica del $2$-simplejo, como objeto combinatorio no es un complejo simplicial. 
