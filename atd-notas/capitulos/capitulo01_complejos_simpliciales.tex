@@ -173,7 +173,7 @@
 	
 	\section{Subdivisiones}
 	\begin{definition}\label{def:subdivision}
-		Una \emph{subdivisión} de un complejo simplicial $K$ es un complejo simplicial $K'$ tal que existen subdivisiones $|K|$ y $|K'|$ tales que:
+		Una \emph{subdivisión} de un complejo simplicial $K$ es un complejo simplicial $K'$ tal que para una realización geométrica fija $|K|$, existe una realización geométrica $|K'|$ tale que:
 		
 		\begin{enumerate}
 			\item La realización geométrica de cada simplejo en $K'$ está contenida en la realización geométrica de algún simplejo de $K$.
@@ -265,7 +265,7 @@
 	\end{exercise}
 	
 	\begin{definition}\label{def:barycentric_subdivision}
-		La \emph{primera subdivisión baricéntrica} de un complejo simplicial $K$ es el complejo de orden de $K$ visto como orden parcial y lo denotamos mediante $\operatorname{Bar}(K)$. La \emph{$N$-ésima subdivisión baricéntrica} de $K$ es la primera subdivisión baricéntrica de $\operatorname{Bar}^{N-1}(K)$.
+		La \emph{primera subdivisión baricéntrica} de un complejo simplicial $K$ es el complejo de orden de $K\setminus\{\emptyset\}$ visto como orden parcial y lo denotamos mediante $\operatorname{Bar}(K)$. La \emph{$N$-ésima subdivisión baricéntrica} de $K$ es la primera subdivisión baricéntrica de $\operatorname{Bar}^{N-1}(K)$.
 	\end{definition} 
 	
 	En otras palabras, los simplejos de $\operatorname{Bar}(K)$ son cadenas de simplejos en $K$. En la Figura~\ref{fig:eg_barycentric} encontramos la forma usual de representar gráficamente una subdivisión baricéntrica. El vértice central, el baricentro del triángulo, corresponde a la única faceta del $2$-simplejo. En general, el baricentro de un simplejo corresponde a su única faceta. 
