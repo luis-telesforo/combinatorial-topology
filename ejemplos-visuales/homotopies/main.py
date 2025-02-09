@@ -1,7 +1,8 @@
+import math
+
 from manim import *
 
 from MyScene import MyScene, VERDOSO
-
 
 class HomotopyLine(MyScene):
     def construct(self):
@@ -16,19 +17,24 @@ class HomotopyLine(MyScene):
                      axis_config={'tip_width':.2, 'tip_height':.2})
                 .add_coordinates()
                 .set_z_index(0))
-        line = axes.plot(lambda x: x, x_range=[0, 1])
-        line.set_z_index(2)
-        parabola = axes.plot(lambda x: x ** 2, x_range=[0, 1]).set_color(VERDOSO)
-        parabola.set_z_index(1)
         description = r"$H(t,s) = (s, ts^{2}+(1-t)s)$ es una homotopía entre $f(s)=s$ y $g(s)=s^{2}$"
-        self.add_description(description)
-        self.play(Create(axes))
-        self.play(Create(line))
-        self.play(Create(parabola))
+        line = self.method_name(axes, lambda x : x, lambda x : pow(x,2), description)
 
         def scaled_homotopy(x, y, z, t):
-            return x * scale - (scale/2), (t * (y ** 2) + (1 - t) * y) * scale - (scale/2), z
+            return x * scale - (scale/2), (t * (pow(y,2)) + (1 - t) * y) * scale - (scale/2), z
 
-        self.play(Homotopy(scaled_homotopy, line.apply_function(lambda p: (p + (scale/2))/scale), rate_func=linear, run_time=5))
+        self.play(Homotopy(scaled_homotopy, line.apply_function(lambda p: (p + (scale/2))/scale), run_time=5))
 
         self.wait()
+
+    def method_name(self, axes, initial_function, final_function, description):
+        function_at_0 = axes.plot(lambda x: initial_function(x), x_range=[0, 1])
+        function_at_0.set_z_index(2)
+        function_at_1 = axes.plot(lambda x: final_function(x), x_range=[0, 1]).set_color(VERDOSO)
+        function_at_1.set_z_index(1)
+
+        self.add_description(description)
+        self.play(Create(axes))
+        self.play(Create(function_at_0))
+        self.play(Create(function_at_1))
+        return function_at_0
