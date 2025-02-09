@@ -7,10 +7,10 @@ class HomotopyLine(MyScene):
     def construct(self):
         self.create_title("Ejemplo de homotopía")
 
-        ax = Axes(x_range=[-1, 1, 1], y_range=[-1, 1, 1], x_length=2, y_length=2)
-        line = ax.plot(lambda x: x, x_range=[0, 1])
+        axes = Axes(x_range=[-1, 1, 1], y_range=[-1, 1, 1], x_length=2, y_length=2)
+        line = axes.plot(lambda x: x, x_range=[0, 1])
         line.set_z_index(2)
-        parabola = ax.plot(lambda x: x ** 2, x_range=[0, 1]).set_color(VERDOSO)
+        parabola = axes.plot(lambda x: x ** 2, x_range=[0, 1]).set_color(VERDOSO)
         parabola.set_z_index(1)
         description = r"$H(t,s) = (s, ts^{2}+(1-t)s)$ es una homotopía entre $f(s)=s$ y $g(s)=s^{2}$"
         self.add_description(description)
