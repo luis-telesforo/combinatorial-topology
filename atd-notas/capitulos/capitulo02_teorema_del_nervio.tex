@@ -6,7 +6,7 @@
 	La razón para no proveer una prueba de este teorema es que cualquiera de sus enunciados requiere material de topología algebraica que no vamos a revisar. A pesar de ello, para entender su enunciado necesitamos diferentes conceptos que ilustraremos antes del teorema del nervio.  La mayoría de las pruebas que se omiten y no se dejan como ejercicio se pueden hallar en \cite{dieck:2008:algebraic:topology,munkres:1984:algebraic:topology,rotman:1988:algebraic:topology}. 
 	
 	\section*{Homotopía}
-	Empezamos con conexidad por trayectorias y homotopías (\cite[Section 2.1]{dieck:2008:algebraic:topology})
+	El material presentado aquí no debe considerarse una introducción a este tema. Lo único que presentamos son las definiciones y algunos ejercicios para poder entender intuitivamente el Lema del Nervio. Para una comprensión más amplia recomendamos \cite{dieck:2008:algebraic:topology} o \cite{rotman:1988:algebraic:topology}.
 	
 	\begin{definition}\label{defn:path}
 		Sean $X$ un espacio topológico, $x,y\in X$ y $I=[0,1]\subseteq\mathbb{R}$. Una \emph{trayectoria} en $X$ de $x$ a $y$ es una función continua $u\colon I\rightarrow X$ tal que $u(0)=x$ y $u(1)=y$. En este caso decimos que $x$ es \emph{conectable por trayectorias} con $y$
@@ -39,14 +39,16 @@
 	
 	
 	\begin{definition}\label{defn:homotopy}
-		Sean $X$ y $Y$ dos espacios topológicos. Dos funciones continuas $f,g\colon X\rightarrow Y$ son \emph{homotópicas} ($f\simeq g$) si existe una \emph{homotopía} $H$ de $f$ a $g$,es decir, si existe una función continua $H\colon X\times I\rightarrow Y$ tal que las siguientes ecuaciones entre restricciones de $H$ se cumplen: $H|_{X\times\{0\}}=f$ y $H|_{X\times\{1\}}=g$. Usualmente escribimos $H_{t}=H|_{X\times\{t\}}$.
+		Sean $X$ y $Y$ dos espacios topológicos. Dos funciones continuas $f,g\colon X\rightarrow Y$ son \emph{homotópicas} ($f\simeq g$) si existe una \emph{homotopía} $H$ de $f$ a $g$, es decir, si existe una función continua $H\colon X\times I\rightarrow Y$ tal que las siguientes ecuaciones entre restricciones de $H$ se cumplen: $H|_{X\times\{0\}}=f$ y $H|_{X\times\{1\}}=g$. Usualmente escribimos $H_{t}=H|_{X\times\{t\}}$.
 	\end{definition}
 	
 	\begin{example}
 		Sean $f,g\colon I\rightarrow\mathbb{R}^{2}$ definidas como $f(s) = (s,s^{2})$ y $g(s)=(s,s)$. Definamos $H\colon I\times I\rightarrow\mathbb{R}^{2}$ como $H(t,s) = (s, ts^{2}+(1-t)s)$. $H$ es continua pues sus funciones coordenadas son continuas en ambas variables. Luego $H_{0} = g$ y $H_{1} = f$. Por lo tanto, $f\simeq g$. Intuitivamente, $H$ está deformando la gráfica de la identidad en la de la función $x\mapsto x^{2}$ en el intervalo $I$.
 	\end{example}
 	
-	
+	\begin{definition}
+		Una homotopía como en el ejemplo anterior se llama \emph{homotopía lineal}.
+	\end{definition}
 	
 	\begin{exercise}\label{rem:homotopy_rel_equiv}
 		Muestra, como en el Ejercicio~\ref{ex:connected_comp}, que ser homotópicas es una relación de equivalencia en las funciones continuas entre dos espacios topológicos. Formalmente debes tener cuidado puesto que las homotopías son funciones de dos variables, por lo que la continuidad se debe verificar utilizando la topología del producto: Un argumento de cálculo multivariado es suficiente.
@@ -60,5 +62,26 @@
 	\begin{definition}\label{defn:homotopy_equivalence}
 		Un \emph{inverso homotópico} de una función continua $f:X\rightarrow Y$ es una función continua $g:Y\rightarrow X$ tal que $f\circ g$ y $g\circ f$ son homotópicas a la identidad. En tal caso, diremos que $f$ es una \emph{equivalencia homotópica} y $X$ y $Y$ serán llamados \emph{homotópicamente equivalentes} o \emph{del mismo tipo de homotopía}. Si $X$ es homotópicamente equivalente a un punto, diremos que es \emph{contráctil}.
 	\end{definition}
+	
+	\begin{exercise}
+		Muestra que todo subconjunto convexo de $\mathbb{R}^{n}$ es contráctil. Pista: puedes suponer que el origen está contenido en el subconjunto.
+	\end{exercise}
+	
+	\begin{exercise}
+		Muestra que $X$ es contráctil si y solo sí, $1_{X}$ es homotópica a una constante.
+	\end{exercise}
+	
+	\begin{exercise}
+		Un \emph{anillo} es el conjunto de puntos que se encuentran entre dos círculos concéntricos; en otras palabras un conjunto de la forma
+		\[
+		A = \{(x,y) \mid r\leq \|(x,y)\|\leq R\}
+		\] Con este ejercicio demostrarás que un anillo es homotópicamente equivalente a $S^{1}$. Para ello supondremos que tenemos un anillo como arriba en el que $r=1$.
+		
+		\begin{enumerate}
+			\item Considera la función $H\colon A\times I\rightarrow S^{1}$ definida mediante $H(x,y, t) = \frac{t(x,y)}{\|(x,y)\|} + (1-t)(x,y)$. Demuestra que esta función es una homotopía entre $1_{A}$ y $H_{1}$. 
+			\item Si $p = H_{1}$ y $i\colon S^{1}\rightarrow A$ es la inclusión, demuestra que $p\circ i = 1_{S^{1}}$.
+			\item Muestra que existe una homotopía $\bar{H}$ entre $i\circ p$ y $1_{S^{1}}$. Concluye que $S^{1}$ es homotópicamente equivalente a $A$ y por tanto, $A$ no es contráctil.
+		\end{enumerate}
+	\end{exercise}
 	
 \end{document}
