@@ -2,7 +2,7 @@ import math
 
 from manim import *
 
-from MyScene import MyScene, VERDOSO
+from basic_scene import MyScene, VERDOSO
 
 SCALE = 4
 
@@ -20,7 +20,7 @@ class LinearHomotopy(MyScene):
                 .add_coordinates()
                 .set_z_index(0))
         description = r"$H(t,s) = (s, ts^{2}+(1-t)s)$ es una homotopía entre $f(s)=s$ y $g(s)=s^{2}$"
-        
+
         self.play_linear_homotopy(axes, lambda x : x, lambda x : pow(x, 2), description)
 
         self.wait()
