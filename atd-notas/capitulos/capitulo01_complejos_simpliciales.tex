@@ -324,4 +324,68 @@
 	\begin{exercise}
 		Muestra con todo detalle la Proposición~\ref{prop:bar_mesh}.
 	\end{exercise}
+	
+	\section{Miscelánea de ejercicios}
+	
+	En estos ejercicios vamos a explorar con mayor generalidad algunos de los conceptos de este capítulo
+	
+	\begin{definition}\label{def:infinite_simplicial_complex}
+		Un \emph{complejo simplicial infinito} sobre un conjunto $V$ es un subconjunto $K\subseteq\mathcal{P}(V)$ cerrado bajo subconjuntos.
+	\end{definition}
+	
+	La mayoría de los conceptos que se revisaron en este capítulo se pueden generalizar de manera directa para complejos simpliciales infinitos.
+	
+	\begin{exercise}
+		Demuestra que todo complejo simplicial, no necesariamente finito, es generado por sus facetas.
+	\end{exercise}
+	
+	\begin{definition}\label{def:geometric_simplex}
+		Un $n$-\emph{simplejo geométrico} es la cápsula convexa de un conjunto afinmente independiente de cardinalidad $n+1$. Una \emph{cara} de un simplejo geométrico $\sigma$ generado por $A$ es un simlejo geométrico generado por un subconjunto de $A$.
+	\end{definition}
+	
+	\begin{definition}
+		Un \emph{complejo simplicial geométrico}, $\tilde{K}$ en $\mathbb{R}^{N}$ es una colección de simplejos geométricos en $\mathbb{R}^{N}$ tales que
+		\begin{enumerate}
+			\item $\tilde{K}$ es cerrado bajo caras.
+			\item La intersección de cualesquiera dos simplejos geométricos en $\tilde{K}$ es un simplejo geométrico.
+		\end{enumerate}
+	\end{definition}
+	
+	\begin{exercise}
+		Prueba que la realización geométrica estándar de un complejo simplicial es un complejo simplicial geométrico. (No necesitas la topología de la realización geométrica para probar esto).
+	\end{exercise}
+	
+	\begin{exercise}
+		Da un ejemplo de una colección de simplejos geométricos que no sea un complejo simplicial geométrico porque falla el segundo punto de la definición. Concluye que en general es falso que la unión de realizaciones geométricas de los simplejos de un complejo simplicial $K$ es la realización geométrica de $K$.
+	\end{exercise}
+	
+	\begin{definition}\label{def:cover}
+		Una \emph{cubierta} de un conjunto $X$ es una familia de subconjuntos de $X$, digamos $\mathcal{U}\subseteq\mathcal{P}(X)$, tal que $X=\bigcup\mathcal{U}$.
+	\end{definition}
+	
+	\begin{definition}\label{def:nerve}
+		El \emph{nervio} de una cubierta $\mathcal{U}$ de $X$ es 
+		\[
+		\mathcal{N}(\mathcal{U})=\{S\subseteq\mathcal{U}\mid \emptyset\neq\bigcap S\text{ y }\#S\in\mathbb{N}\}
+		\]
+	\end{definition}
+	
+	\begin{exercise}
+		Prueba que el nervio de una cubierta es un complejo simplicial.
+	\end{exercise}
+	
+	\begin{definition}\label{def:index_cover}
+		Una \emph{cubierta con índices} de un conjunto $X$ es una familia de subconjuntos de $X$ indicada por un conjunto $\mathcal{J}$, digamos $\mathcal{U}=(U_{j})_{j\in \mathcal{J}}$, tal que $X=\bigcup_{j\in \mathcal{J}}U_{j}$.
+	\end{definition}
+	
+	\begin{definition}\label{def:indexed_nerve}
+		El \emph{nervio} de una cubierta indicada $\mathcal{U}$ de $X$ es 
+		\[
+		\mathcal{N}(\mathcal{U})=\{J\subseteq \mathcal{J}\mid \emptyset\neq U_{J}\text{ y }\#J\in\mathbb{N}\}
+		\]donde $U_{J}=\bigcap_{j\in J}U_{j}$.
+	\end{definition}
+	
+	\begin{exercise}
+		Es claro que el nervio de una cubierta indicada es un complejo simplicial. También es claro que si olvidamos los índices de una cubierta indicada, obtenemos una cubierta. Da un ejemplo de una cubierta indicada $(U_{j})_{j\in \mathcal{J}}$ tal que la cubierta obtenida al olvidar los índices tenga un nervio distinto al de la cubierta indicada original.
+	\end{exercise}
 \end{document}
