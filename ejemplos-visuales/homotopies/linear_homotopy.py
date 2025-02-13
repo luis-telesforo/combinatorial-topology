@@ -1,7 +1,5 @@
-import math
-
-from numpy import array, linalg
 from manim import *
+from numpy import array, linalg
 
 from basic_scene import MyScene, VERDOSO
 
@@ -10,7 +8,8 @@ SCALE = 4
 
 class LinearHomotopy(MyScene):
     def construct(self):
-        self.create_title("Ejemplo de homotopía")
+        self.add_title_and_description("Ejemplo de homotopía",
+                          r"$H(t,s) = (s, ts^{2}+(1-t)s)$ es una homotopía entre $f(s)=s$ y $g(s)=s^{2}$")
 
         axes = (Axes(x_range=[0, 1, 1],
                      y_range=[0, 1, 1],
@@ -20,35 +19,36 @@ class LinearHomotopy(MyScene):
                      axis_config={'tip_width':.2, 'tip_height':.2})
                 .add_coordinates()
                 .set_z_index(0))
-        description = r"$H(t,s) = (s, ts^{2}+(1-t)s)$ es una homotopía entre $f(s)=s$ y $g(s)=s^{2}$"
 
-        self.play_linear_homotopy(axes, lambda x : x, lambda x : pow(x, 2), description)
+        self.play_linear_homotopy(axes, lambda x : x, lambda x : pow(x, 2))
 
         self.wait()
 
-    def play_linear_homotopy(self, axes, initial_function, final_function, description):
+    def play_linear_homotopy(self, axes, initial_function, final_function):
         function_at_0 = axes.plot(lambda x: initial_function(x), x_range=[0, 1])
         function_at_0.set_z_index(2)
         function_at_1 = axes.plot(lambda x: final_function(x), x_range=[0, 1]).set_color(VERDOSO)
         function_at_1.set_z_index(1)
 
-        self.add_description(description)
         self.play(Create(axes))
         self.play(Create(function_at_0))
         self.play(Create(function_at_1))
 
         def scaled_homotopy(x, y, z, t):
-            return x * SCALE - (SCALE/2), (t * (final_function(y)) + (1 - t) * initial_function(y)) * SCALE - (SCALE/2), z
+            return (x * SCALE - (SCALE/2),
+                    (t * (final_function(y)) + (1 - t) * initial_function(y)) * SCALE - (SCALE/2),
+                    z)
 
-        self.play(Homotopy(scaled_homotopy, function_at_0.apply_function(lambda p: (p + (SCALE / 2)) / SCALE), run_time=5))
+        self.play(Homotopy(scaled_homotopy,
+                           function_at_0.apply_function(lambda p: (p + (SCALE / 2)) / SCALE),
+                           run_time=5))
 
 class NullHomotopy(MyScene):
     def construct(self):
-        self.create_title("Ejemplo de homotopía")
-
-        description = r"$H(t,s) = (s, (1-t)s)$ es una homotopía entre $1_{S}$ y $g(s,t)=0$, donde $S$ es un convexo en $\mathbb{R}^{2}$."
-
-        self.add_description(description)
+        self.add_title_and_description(
+            "Ejemplo de homotopía",
+            r"$H(t,s) = (s, (1-t)s)$ es una homotopía entre $1_{S}$ y $g(s,t)=0$," +
+            r" donde $S$ es un convexo en $\mathbb{R}^{2}$.")
 
         def null_homotopy(x, y, z, t):
             return (1 - t) * x, (1 - t) * y, z
@@ -59,11 +59,9 @@ class NullHomotopy(MyScene):
 
 class NoNullHomotopic(MyScene):
     def construct(self):
-        self.create_title("Ejemplo de espacio no contráctil")
-
-        description = r"Un anillo es homotópicamente equivalente a un círculo. Y el círculo no es contráctil."
-
-        self.add_description(description)
+        self.add_title_and_description(
+            "Ejemplo de espacio no contráctil",
+            r"Un anillo es homotópicamente equivalente a un círculo. Y el círculo no es contráctil.")
 
         ring = Annulus(1, 2, color=VERDOSO).set_z_index(1)
 
