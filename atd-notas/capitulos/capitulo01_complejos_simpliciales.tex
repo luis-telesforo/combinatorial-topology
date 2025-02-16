@@ -17,7 +17,7 @@
 	
 	\section{Notación y nomenclatura estándar}
 	
-	\noindent Sea $K$ un complejo simplicial. Cada elemento de $K$ se llama \emph{simplejo}\footnote{También es común en español, quizás lo es más, utilizar el término \emph{cara}. No lo adopto porque viene del uso geométrico de esa palabra: \textit{las caras del poliedro.} Aunque es verdad que los complejos simpliciales pueden considerarse objetos geométricos, su combinatoria es más natural. Véanse \cite{kozlov:2008:combinatorial:alg:topo}, \cite{may:1967:simplicial}} (\emph{simplex} y plural \emph{simplices} en inglés). La \emph{dimensión} de $\sigma$ es $\dim(\sigma)=\#\sigma-1$. Si $\dim(\sigma)=k$ decimos que $\sigma$ es un \emph{$k$-simplejo}. Un \emph{vértice} de un complejo simplicial es un $0$-simplejo; El conjunto de  $n$-simplejos de $K$ será denotado por $K_{n}$. 
+	\noindent Sea $K$ un complejo simplicial. Cada elemento de $K$ se llama \emph{simplejo}\footnote{También es común en español, quizás lo es más, utilizar el término \emph{cara}. No lo adopto porque viene del uso geométrico de esa palabra: \textit{las caras del poliedro.} Aunque es verdad que los complejos simpliciales pueden considerarse objetos geométricos, su combinatoria es más natural en mi opinión. Véanse \cite{kozlov:2008:combinatorial:alg:topo}, \cite{may:1967:simplicial}} (\emph{simplex} y plural \emph{simplices} en inglés). La \emph{dimensión} de $\sigma$ es $\dim(\sigma)=\#\sigma-1$. Si $\dim(\sigma)=k$ decimos que $\sigma$ es un \emph{$k$-simplejo}. Un \emph{vértice} de un complejo simplicial es un $0$-simplejo; El conjunto de  $n$-simplejos de $K$ será denotado por $K_{n}$. Para simplificar notación, identificaremos $K_{0}$ con $\bigcup K_{0}$, es decir, un vértice de $K$ será simplemente un elemento de $V$.
 	
 	La dimensión de $K$ es $\dim(K)=\max\{\dim(\sigma)\mid\sigma\in K\}$. Una \emph{faceta} (o \emph{careta} si se usa cara) de un complejo simplicial es un simplejo máximal con respecto a la contención; es decir, $\sigma$ es faceta si $\sigma\subseteq\tau$, entonces $\tau=\sigma$. Diremos que un complejo simplicial es \emph{puro} wsiempre que todas sus facetas tengan la misma dimensión.
 	
@@ -86,7 +86,7 @@
 	\end{exercise}
 	
 	\begin{exercise}
-		Muestra que $\operatorname{skel}_{n}(K)=K_{n}$ si y sólo sí $n=-1$ o $K$ es vano. ¿Qué pasaría con esta equivalencia si en la Definición~\ref{def:simplicial_complex} eliminamos los complejos simpliciales vacío y vano?
+		Muestra que $\operatorname{skel}_{n}(K)=K_{n}$ si y sólo sí $n<-1$ o $K$ es vano. ¿Qué pasaría con esta equivalencia si en la Definición~\ref{def:simplicial_complex} eliminamos los complejos simpliciales vacío y vano?
 	\end{exercise}	
 	
 	Un \emph{simplejo frontera} de un $k$-simplejo $\sigma$, es un $(k-1)$-simplejo $\tau\in\sigma$. La \emph{frontera} de $\sigma$ es $\partial\sigma=\bigcup\{\tau\mid\tau\text{ es un simplejo frontera de }\sigma\}$.
@@ -130,7 +130,7 @@
 	\end{definition}
 	
 	\begin{remark}\label{rem:geom_realization}
-		La realización geométrica es definida mediante los $V$-simplejos estándar. Como ellos tienen la topología de subespacio de $\mathbb{R}^{V}$ siempre supondremos que $|K|$ tiene una métrica que le induce la topología adecuada. También, cualquier afirmación topológica hecha sobre un complejo simplicial estará hecha sobre su realización geométrica.. 
+		La realización geométrica es definida mediante los $V$-simplejos estándar. Como ellos tienen la topología de subespacio de $\mathbb{R}^{V}$ siempre supondremos que $|K|$ tiene una métrica que le induce la topología adecuada. También, cualquier afirmación topológica hecha sobre un complejo simplicial estará hecha sobre su realización geométrica..
 	\end{remark}
 	
 	\begin{exercise}\label{rem:geom_realization_colimit}
@@ -197,7 +197,20 @@
 	\end{exercise}
 	
 	\begin{exercise}
-		Muestra que la imagen en la Figura~\ref{fig:eg_barycentric} es una subdivisión de un $2$-simplejo.
+		Muestra que la imagen en la Figura~\ref{fig:eg_barycentric} es una subdivisión de un $2$-simplejo. Para ello usa la siguiente estrategia. Sean $K$ el $2$-simplejo generado por ${a,b,c}$ y $E$ su realización geométrica estándar.
+		
+		\begin{enumerate}
+			\item Encuentra el baricentro de la realización geométrica de todos los simplejos no vacíos de $K$. Todos ellos deben tener coordenadas respecto a la base estándar $\{a,b,c\}$ de $\mathbb{R}^{\{a,b,c\}}$. Aquí puedes optar por lo que te confunda menos, usar $e_{x}$ o $x$ para referirte al básico de $\mathbb{R}^{\beta}$ que corresponde a $x\in\beta$, pero hazlo consistentemente durante el resto de los incisos.
+			
+			\item Sea $B$ el conjunto del baricentro de todos los simplejos no vacíos de $K$, sabemos que $\#B = \#K -1$. Sea $f\colon K\setminus\emptyset \rightarrow B$ la función que a cada simplejo le asocia su baricentro. Es claro que esta función es biyectiva. Sea $\Delta(B,f)$ el complejo simplicial sobre $B$ definido mediante $\sigma\in\Delta(B,f)$ si y sólo sí $\sigma = f[\tau]$ para algún $\tau\in\operatorname{Bar}(K)$. Demuestra que $\Delta(B,f)\cong \operatorname{Bar}(K)$. Pista, un isomorfismo es $f$.
+			
+			\item Sean $R$ la realización geométrica estándar de $\Delta(B,f)$ e $i\colon B\rightarrow \mathbb{R}^{\{a,b,c\}}$ la inclusión. Si estás considerando $e_{x}$ como el básico estándar asociado a $x$, sean $\bar{B}$ la base estándar de $\mathbb{R}^{B}$ e $i_{e}\colon \bar{B} \rightarrow\mathbb{R}^{\{a,b,c\}}$ definida como $i_{e_{x}}=x$. Esta función está bien definida y es consistente con tu notación pues 
+			\[
+			i_{e}(e_{t_{a}e_{a}+t_{b}e_{b}+t_{c}e_{c}}) = t_{a}e_{a}+t_{b}e_{b}+t_{c}e_{c}
+			\]. Sea $g$ la extensión lineal de $i$ (o $i_{e}$), así $g$ es continua. Muestra que $g[R] = E$ y de hecho es un homeomorfismo. Pista: si $x\in E$, entonces $x$ es un elemento de la cápsula convexa de a lo más 3 elementos de $B$. Basta tomarse los tres más cercanos, si hay 4 más cercanos, entonces elimina de ellos los dos más lejanos (esta situación implica que $x$ está en una de las mediatrices del $E$). Las coordenadas de $x$ en esta nueva cápsula convexa definen una función continua de $E$ en $R$ y es inversa de $g\vert_{R}$.
+			
+			\item Para terminar, necesitas probar los dos puntos de la definición de subdivisión. Para ello, considera $E$ como la realización de ambos complejos simpliciales. Para el punto 1, para $\sigma'\in\Delta(B,f)$ toma cualquier punto interior de $|\sigma'|$. Ese punto se encuentra en la realización geométrica de exactamente un simplejo de $K$ pues $g[\sigma']\subseteq \sigma$ para un único $\sigma\in K$ con $\dim(\sigma') = \dim(\sigma)$ (demuestra esto último). Para el punto 2, muestra que para $\sigma\in K$ basta tomar $\sigma'\leq \Delta(B,f)$ como el complejo simplicial generado por todos los baricentros de $|\sigma|$.
+		\end{enumerate}
 	\end{exercise}
 	
 	\begin{figure}
