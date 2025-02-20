@@ -1,6 +1,6 @@
 from manim import Text, Create, Title, Axes, Dot, RIGHT, MoveToTarget, \
     VGroup, UP, LEFT, DOWN, Uncreate, Write, TransformMatchingShapes, Annulus, Line, BLACK, Triangle, Polygon, \
-    Transform, WHITE
+    Transform, WHITE, Unwrite
 from pandas import read_csv
 
 from white_slide import WhiteBackgroundSlide, VERDOSO, NARANJA
@@ -9,12 +9,15 @@ from white_slide import WhiteBackgroundSlide, VERDOSO, NARANJA
 class Presentation(WhiteBackgroundSlide):
     def construct(self):
         main_question = Text(r"¿Qué es el Análisis topológico de datos?")
-        self.add(main_question)
+        self.play(Write(main_question))
         self.next_slide()
 
-        self.wipe(self.mobjects_without_canvas)
+        self.play(Unwrite(main_question))
+        self.next_slide()
         analisis_topologico_datos = Title(r"¿Por qué importa la topoología de los datos?")
         self.play(Create(analisis_topologico_datos))
+        self.next_slide()
+
         dataframe = read_csv('../introduccion/datasets/datasaurus.csv')
         dataset_to_plot = ['wide_lines', 'high_lines', 'away', 'dots', 'circle']
         positions = [UP * 2 + LEFT * 8, UP * 2 + LEFT * 4,
@@ -51,6 +54,8 @@ class Presentation(WhiteBackgroundSlide):
 
         self.wipe(self.mobjects_without_canvas)
         problema = Title(r"Si nuestros datos son tomados del siguiente espacio")
+        self.next_slide()
+
         anillo = Annulus(1, 2, color=VERDOSO).set_z_index(1)
         self.play(Create(problema), Create(anillo))
         self.next_slide()
