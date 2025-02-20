@@ -133,7 +133,7 @@
 		La realización geométrica es definida mediante los $V$-simplejos estándar. Como ellos tienen la topología de subespacio de $\mathbb{R}^{V}$ siempre supondremos que $|K|$ tiene una métrica que le induce la topología adecuada. También, cualquier afirmación topológica hecha sobre un complejo simplicial estará hecha sobre su realización geométrica..
 	\end{remark}
 	
-	\begin{exercise}\label{rem:geom_realization_colimit}
+	\begin{exercise}\label{ex:geom_realization_colimit}
 		Sea $K$ un complejo simplicial. En este ejercicio veremos cómo podemos estudiar complejos simpliciales infinitos y sus realizaciones geométricas. La equivalencia de la última parte sirve como definición de la topología de la realización geométrica de complejos simpliciales infinitos \cite[p. 8]{munkres:1984:algebraic:topology}.
 		\begin{enumerate}
 			\item Prueba que si $\sigma\in K$, entonces $|\sigma|\subseteq |K|$.
@@ -183,7 +183,7 @@
 	
 	Los siguientes ejercicios están diseñados para una mejor y pronta comprensión de la definición de arriba.
 	
-	\begin{exercise}
+	\begin{exercise}\label{ex:subdivision_same_geom}
 		Si $K'$ es una subdivisión de $K$, entonces $|K|\cong|K'|$.
 	\end{exercise}
 	
@@ -229,9 +229,49 @@
 	
 	Intuitivamente, una subdivisión de $K$ se obtiene agregando simplejos internos a (algunos de) los simplejos de $K$. Sin embargo, esto debe hacerse con cuidado. En la Figura~\ref{fig:eg_non_subdivision} vemos que este procedimiento fue realizado sin \textbf{preservar la estructura combinatoria} del complejo simplicial original. Esto quiere decir que aunque el espacio topológico asociado al objeto en esa figura (es decir el triángulo) es la realización geométrica del $2$-simplejo, como objeto combinatorio no es un complejo simplicial. 
 	
-	\begin{exercise}
+	\begin{exercise}\label{ex:subdivision_iso}
 		Demuestra que si $L$ es una subdivisión de $K$ y $K$ lo es de $L$, entonces existe un isomorfismo $K\cong L$.
 	\end{exercise}
+	
+	\begin{proof}[Prueba del Ejercicio~\ref{ex:subdivision_iso}]
+		Por el Ejercicio~\ref{ex:subdivision_same_geom} supondremos que la realización geométrica de la Definición~\ref{def:subdivision} es la realización geométrica estándar de $K$.
+		
+		Por el segundo punto de la Definición~\ref{def:subdivision}, sabemos que para cada $\sigma\in K$ existe un subcomplejo simplicial $f(\sigma)\leq L$ tal que
+		\begin{equation}\label{eq:simplex_is_complex}
+			|\sigma|=|f(\sigma)|.
+		\end{equation}
+		
+		Por el primer punto de la Definición~\ref{def:subdivision}, para cada $\tau'\in f(\sigma)$, existe $\tau\in K$ tal que $|\tau'|\subseteq|\tau|$. De la Ecuación~\ref{eq:simplex_is_complex}, podemos elegir $\tau\subseteq\sigma$.
+		
+		A su vez, existe $g(\tau)\leq K$ tal que
+		
+		\begin{equation}\label{eq:simplex_is_complex_two}
+			|\tau|=|g(\tau)|.
+		\end{equation}
+		
+		Es decir, $g(\tau)$ es un subcomplejo de $\sigma$. Esto es válido para cualquier $\tau\in f(\sigma)$.
+		
+		\begin{remark}\label{rem:about_dimension_of_subdivisions}
+			Recordemos que $|\sigma|$ es la realización geométrica estándar de $\sigma$ por nuestra suposición al inicio de la demostración. Por la Ecuación~\ref{eq:simplex_is_complex}, existe $\tau\in f(\sigma)$ tal que $\dim(\tau) = \dim(\sigma)$, ya que cualquier punto en el interior de $|\sigma|$ se encuentra en la cápsula convexa de un conjunto afínmente independiente con $\#\sigma$ puntos.
+		\end{remark} 
+		
+		Tomemos $\overline{\tau}\in f(\sigma)$ tal que $\dim(\overline{\tau}) = \dim(\sigma)$. Así, $K(\overline{\tau})$ es un subcomplejo de $\sigma$ que contiene, por la Observación~\ref{rem:about_dimension_of_subdivisions}, un simplejo cuya dimensión iguala la de $\sigma$. Esto sólo es posible si 
+		\begin{equation}\label{eq:subcomplex_is_simplex}
+			g(\overline{\tau})=\sigma.
+		\end{equation}
+		
+		Sustituyendo la Ecuación~\ref{eq:subcomplex_is_simplex} en las ecuaciones~\ref{eq:simplex_is_complex} y~\ref{eq:simplex_is_complex_two}, concluimos que 
+		\[
+		|\overline{\tau}|=|f(\sigma)|.
+		\] 
+		Dado que $\overline{\tau}\in f(\sigma)$, la ecuación anterior solo es posible si $\overline{\tau}=f(\sigma)$.
+		
+		Dado que este argumento es simétrico, concluimos que $g(\tau)$ debe ser un simplejo también y por la Ecuación ~\ref{eq:subcomplex_is_simplex}, tanto $g$ como $f$ son funciones biyectivas y de hecho de aquí son inversas entre sí.
+		
+		Para terminar, demostraremos que $f$ y $g$ son funciones simpliciales. Primero, notemos que $\dim(f(\sigma))=\dim(\sigma)$ (análogamente para $g$). Por lo tanto, si $v\in K_{0}$, entonces $f(v)\in L_{0}$.
+		
+		Luego, por el Ejercicio~\ref{ex:geom_realization_colimit}, podemos concluir que si $\sigma\subseteq\sigma'$, entonces $f(\sigma)\subseteq f(\sigma')$ (análogamente para $g$). Esto implica que $f[\sigma]\in L$, es más $f[\sigma]=f(\sigma)$ (análogamente para $g$). Con esto concluimos que $K\cong L$.
+	\end{proof}
 
 	Aunque existen diferentes subdivisiones generadas con un método, nosotros solamente estudiaremos la subdivisión baricéntrica. Para ello necesitamos algunas definiciones relacionadas a órdenes parciales.
 	
