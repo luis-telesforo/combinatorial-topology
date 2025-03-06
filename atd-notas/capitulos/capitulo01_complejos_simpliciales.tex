@@ -419,8 +419,8 @@
 	\begin{definition}\label{def:nerve}
 		El \emph{nervio} de una cubierta $\mathcal{U}$ de $X$ es 
 		\[
-		\mathcal{N}(\mathcal{U})=\{S\subseteq\mathcal{U}\mid \emptyset\neq\bigcap S\text{ y }\#S\in\mathbb{N}\}
-		\]
+		\mathcal{N}(\mathcal{U})=\{S\subseteq\mathcal{U}\mid \emptyset\neq\bigcap S\text{ y }\#S\in\mathbb{N}\}.
+		\]Para que esta definición sea consistente, debemos tener cuidado, pues si $S	=\emptyset$, entonces $\cap S$ no está definido. Así, hay que agregar $\emptyset$ a la definición del nervio (considerando el complejo simplicial generado) o acordar que $\cap\emptyset = X$. En cualquier caso, tenemos el siguiente ejercicio.
 	\end{definition}
 	
 	\begin{exercise}
@@ -435,10 +435,10 @@
 		El \emph{nervio} de una cubierta indicada $\mathcal{U}$ de $X$ es 
 		\[
 		\mathcal{N}(\mathcal{U})=\{J\subseteq \mathcal{J}\mid \emptyset\neq U_{J}\text{ y }\#J\in\mathbb{N}\}
-		\]donde $U_{J}=\bigcap_{j\in J}U_{j}$.
+		\]donde $U_{J}=\bigcap_{j\in J}U_{j}$. Aquí sucede lo mismo que con la Definición~\ref{def:nerve}.
 	\end{definition}
 	
-	\begin{exercise}
+	\begin{exercise}\label{ex:different_nerves_same_cover}
 		Es claro que el nervio de una cubierta indicada es un complejo simplicial. También es claro que si olvidamos los índices de una cubierta indicada, obtenemos una cubierta. Da un ejemplo de una cubierta indicada $(U_{j})_{j\in \mathcal{J}}$ tal que la cubierta obtenida al olvidar los índices tenga un nervio no isomorfo al de la cubierta indicada original.
 	\end{exercise}
 \end{document}

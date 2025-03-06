@@ -1,11 +1,11 @@
 \documentclass{standalone}
 
 \begin{document}
-	En este capítulo presentaremos una versión del Teorema (Lema) del Nervio. Este resultado es multifacético en el sentido de que hay diferentes enunciados no equivalentes pero que esencialmente dicen que algunas propiedades topológicas de un espacio son compartidas por un complejo simplicial  que se obtiene de una cubierta del espacio original.
+	En este capítulo presentaremos una versión del Lema del Nervio. Este resultado es multifacético en el sentido de que hay diferentes enunciados no equivalentes que relacionan homotópica u homológicamente un espacio con un complejo simplicial. Cada uno de estos teoremas dice que algunas propiedades topológicas de un espacio son compartidas por un complejo simplicial  que se obtiene de una cubierta del espacio original.
 	
-	La razón para no proveer una prueba de este teorema es que cualquiera de sus enunciados requiere material de topología algebraica que no vamos a revisar. A pesar de ello, para entender su enunciado necesitamos diferentes conceptos que ilustraremos antes del teorema del nervio.  La mayoría de las pruebas que se omiten y no se dejan como ejercicio se pueden hallar en \cite{dieck:2008:algebraic:topology,munkres:1984:algebraic:topology,rotman:1988:algebraic:topology}. 
+	Podríamos tener, por tanto, un curso completo para demostrar algunas de las variantes de este lema; sin embargo, aquí no lo demostraremos. La razón para no proveer una prueba de este resultado es que cualquiera de sus enunciados requiere material de topología algebraica que no vamos a revisar y que no es trivial. A pesar de ello, para entender su enunciado necesitamos diferentes conceptos que ilustraremos antes. Referencias muy buenas para profundizar en este tema son las siguientes: \cite{dieck:2008:algebraic:topology,munkres:1984:algebraic:topology,rotman:1988:algebraic:topology}. 
 	
-	\section*{Homotopía}
+	\section{Homotopía}
 	El material presentado aquí no debe considerarse una introducción a este tema. Lo único que presentamos son las definiciones y algunos ejercicios para poder entender intuitivamente el Lema del Nervio. Para una comprensión más amplia recomendamos \cite{dieck:2008:algebraic:topology} o \cite{rotman:1988:algebraic:topology}.
 	
 	\begin{definition}\label{defn:path}
@@ -64,10 +64,6 @@
 	\end{definition}
 	
 	\begin{exercise}
-		Muestra que todo subconjunto convexo de $\mathbb{R}^{n}$ es contráctil. Pista: puedes suponer que el origen está contenido en el subconjunto.
-	\end{exercise}
-	
-	\begin{exercise}
 		Muestra que $X$ es contráctil si y solo sí, $1_{X}$ es homotópica a una constante.
 	\end{exercise}
 	
@@ -84,4 +80,77 @@
 		\end{enumerate}
 	\end{exercise}
 	
+	\begin{exercise}\label{ex:convex_is_contractible}
+		Muestra que todo subconjunto convexo de $\mathbb{R}^{n}$ es contráctil. Pista: puedes suponer que el origen está contenido en el subconjunto.
+	\end{exercise}
+	
+	\section{Lema del nervio}
+	
+	Ya vimos (definiciones~\ref{def:cover},~\ref{def:index_cover},~\ref{def:nerve} y~\ref{def:indexed_nerve}) que dado cualquier espacio topológico $X$ junto con una cubierta, podemos recuperar un complejo simplicial asociado a la cubierta. En esta sección enunciaremos el Lema del nervio y algunas consecuencias de él.
+	
+	\begin{theorem}[Lema del nervio]\label{thm:nerve}
+		Sean $X$ un espacio topológico y $\mathcal{U} = (U_{j})_{j\in\mathcal{J}}$ una cubierta indicada de $X$ que es abierta y finita. Si para cada $J\subseteq\mathcal{J}$ tal que $U_{J}\neq\emptyset$ se cumple que $U_{J}$ es contráctil, entonces $X$ es homotópicamente equivalente a $|\mathcal{N}(\mathcal{U})|$.
+	\end{theorem}
+	
+	Como mencionamos al inicio del capítulo, existen muchas otras variantes del teorema anterior. En particular, la prueba de esta versión puede encontrarse en \cite[Capítulo 15]{kozlov:2008:combinatorial:alg:topo}. En cuanto a los primeros enunciados de este teorema, tenemos un resultado que apareció exclusivamente para complejos simpliciales en \cite{Borsuk1948}; sin embargo, ahí no se puede encontrar un enunciado tan claro como el que presentamos. En cambio, en  \cite{Weil1952, Mccord:nerve} encontramos los primeros enunciados que conocemos como lemas del nervio. Su importancia en topología y sus múltiples aplicaciones han inspirado el desarrollo de diferentes versiones del lema del nervio. Por ejemplo, el enunciado original trataba de homotopía pero recientemente se han demostrado versiones homológicas en \cite{homological:nerve, MESHULAM:nerve}. Por otro lado, también se ha investigado la funtorialidad del teorema \cite{BAUER:nerve}. Creo que el y la lectora podrá encontrar la última referencia particularmente atractiva, pues todo ese artículo está pensado en desarrollar un lema del nervio sólido para las aplicaciones.
+	
+	También es importante notar que dimos el Lema del nervio para cubiertas indicadas y el Ejercicio~\ref{ex:different_nerves_same_cover} nos dice que si olvidamos los índices, entonces los nervios van a ser diferentes.
+	
+	\begin{theorem}
+		Si $\mathcal{U} = (U_{j})_{j\in\mathcal{J}}$ es una cubierta indicada de $X$, y $\mathcal{U}'$ es la cubierta (sin índices) asociada, entonces $|\mathcal{N}(\mathcal{U})|$ es homotópicamente equivalente a $|\mathcal{N}(\mathcal{U}')|$.
+	\end{theorem}
+	
+	No vamos a demostrar es teorema anterior pues requiere colapsos \cite[Definición 1.36]{scoville:2019:discrete:morse} pero referimos a \cite[Remark 1.4]{BAUER:nerve} para los detalles. Sin embargo, sí usaremos este teorema para usar indistintamente cubiertas o cubiertas indicadas según nos convenga.
+	
+	\begin{corollary}\label{cor:nerve_convexes}
+		Si $\mathcal{U}$ es una cubierta abierta de $X$ tal que todo elemento de $\mathcal{U}$ es convenxo, entonces $X$ es homotópicamente equivalente a $|\mathcal{N}(\mathcal{U})|$.
+	\end{corollary}
+	
+	\begin{proof}
+		Como todo convexo es contráctil (Ejercicio~\ref{ex:convex_is_contractible}) y la intersección de convexos es convexo, el Lema del nervio (Teorema~\ref{thm:nerve}) implica el resultado.
+	\end{proof}
+	
+	\section{Algoritmo MAPPER}
+	En esta sección presentamos el algoritmo MAPPER tal cual aparece en \cite{mapper}. Para ello motivaremos un poco su diseño aunque no lo analizaremos ni computacional ni estadísticamente (para un estudio más profundo referimos a \cite{carriere:mapper, tamal:mapper}).
+	
+	Cabe mencionar que la siguiente motivación, aunque basada en \cite[Sección 2.1]{mapper}, no trata de ser una traducción o explicación de la motivación de los creadores de MAPPER que no menciona el Lema del nervio. Sin embargo, usando ese resultado como se menciona en \cite[Sección 3]{chazal:frontiers}, es podemos darle una mejor motivación al algoritmo MAPPER. 
+	
+	Consideremos un espacio topológico $X\subseteq\mathbb{R}^{n}$ y una función continua $f\colon X\rightarrow \mathbb{R}^{d}$. Si $X$ es compacto, sabemos que $\operatorname{im}(f)$ es compacto. Así, dada cualquier cubierta abierta de $\operatorname{im}(f)$, podemos encontrar una subcubierta finita y  $\operatorname{im}(f)$ está contenida en un rectángulo. Es decir, si $d=1$, entonces podemos cubrir a $\operatorname{im}(f)$ con una cantidad finita de intervalos abiertos. (Nota que para eso sólo necesitas que $\operatorname{im}(f)$ sea acotada, pero suponer compacidad nos asegura que podemos trabajar con cualquier cubierta que queramos).
+	
+	Sea $\mathcal{U}$ una cubierta abierta y finita de $\operatorname{im}(f)$. Si $d=1$, podemos, como en \cite{mapper}, suponer que esta cubierta consiste de intervalos abiertos de la misma longitud, digamos $l$, espaciados a una distancia fija, digamos $s$. Para cada $U\in\mathcal{U}$, sabemos que $f^{-1}[U]$ es abierto. De manera que $\mathcal{U}'= \{f^{-1}[U]\mid U\in\mathcal{U}\}$ es una cubierta abierta y finita de $X$.
+	
+	Es falso que en general $\mathcal{U}'$ satisfaga las hipótesis del Lema del nervio. Un ejemplo es $p_{2}\colon S^{1}\rightarrow \mathbb{R}$ definida como $p_{2}(x,y) =y$ con la siguiente cubierta del intervalo unitario: $\{\left[0,.6\right),\left(.4,1\right]\}$. El problema es que en este caso $\mathcal{U}'$ resulta en dos semicírculos cuya intersección tiene dos componentes conexas.
+	
+	\begin{exercise}\label{ex:failed_pull_back_cover}
+		Muestra que el ejemplo anterior en efecto no satisface las hipótesis del Lema del nervio (Teorema~\ref{thm:nerve}) y que el nervio de $\mathcal{U}'$ no es homotópicamente equivalente a $S^{1}$ (para lo último tendrás que citar, sin prueba, algún teorema no mencionado en estas notas).
+	\end{exercise}
+	
+	Algo que podemos hacer, es considerar, para cada $U\in\mathcal{U}$, el conjunto de componentes conexas de $f^{-1}[U]$. Llamemos a esta cubierta el \emph{refinamiento de la imagen inversa de $\mathcal{U}$}. Esto, al menos en el ejemplo anterior resuelve el problema. 
+	
+	\begin{exercise}
+		Muestra que el refinamiento de la imagen inversa de la cubierta del ejemplo del Ejercicio~\ref{ex:failed_pull_back_cover} sí satisface las hipótesis del Lema del nervio. Dibuja el nervio.
+	\end{exercise}
+	
+	Si a la explicación que hemos expuesto le quitamos las menciones del Lema del nervio, recuperamos \cite[Sección 2.1]{mapper}. Veamos cómo. El refinamiento de la imagen inversa de $\mathcal{U}$ nos induce un nervio. Pidiendo una partición de la unidad para esa cubierta, podemos parametrizar continuamente los elementos de $X$ usando las coordenadas baricéntricas de la realización geométrica de tal nervio. Informalmente, podemos pensar que el nervio de esa cubierta es una deformación del espacio original. Esto parece ser suficiente para los autores de \cite{mapper} para justificar el siguiente algoritmo.
+	
+	\begin{enumerate}
+		\item Consideremos una nube de puntos $Y$ tomada de un espacio $X\subseteq\mathbb{R}^{n}$ y una función continua $f\colon X\rightarrow\mathbb{R}^{d}$.
+		\item Para una cubierta $\mathcal{U}$ de $\operatorname{im}(f)$ calculemos conglomerados de $f^{-1}[U]\subseteq Y$ con $U\in\mathcal{U}$ (cada conglomerado juega el papel de la componente conexa).
+		\item El nervio que se obtiene de este conjunto de conglomerados es una aproximación topológica de $X$.
+	\end{enumerate}
+	
+	Sin embargo, desde mi punto de vista podemos obtener una motivación del algoritmo MAPPER más fundamental. Para justificar esto, cuestionaremos la heurística de MAPPER mencionada en el párrafo anterior.
+	
+	Si $X$, el conjunto del cual una nube de datos $Y$ fue extraída, es compacto, sabemos que sus componentes conexas son acotadas. Así, las componentes conexas de $f^{-1}[U]$ resultan ser subespacios de las componentes de $X$. Así, podemos encontrar encerrar a las componentes conexas de $f^{-1}[U]$ en una bola abierta con centro en algún elemento de $Y$. Es verosímil pensar que tales bolas son lo suficientemente grandes como para formar una cubierta de $X$. Por el Corolario~\ref{cor:nerve_convexes}, sabríamos con absoluta certeza que el nervio de esta cubierta es homotópicamente equivalente a $X$, no solo que es una imagen continúa de él. No es muy difícil pensar a los conglomerados como bolas abiertas. Creo que este argumento, nos ofrece una mejor motivación del algoritmo MAPPER como herramienta para aproximar $X$.
+	
+	Hay varios problemas con el algoritmo MAPPER.
+	
+	\begin{itemize}
+		\item ¿Cómo afecta la función $f$ al nervio que se obtiene?
+		\item ¿La forma en la que se obtengan los conglomerados altera el nervio?
+		\item ¿Podemos garantizar estadísticamente que con una muestra diferente los nervios serán ``similares''?
+		\item Si dos funciones son cercanas bajo alguna métrica útil, ¿los nervios serán ``cercanos''?
+	\end{itemize}
+	
+	No profundizaremos en ninguna de estas preguntas pues son temas de investigación actual. Sin embargo, referimos a \cite{chazal:frontiers, carriere:mapper} para introducirse en ellos.
 \end{document}
