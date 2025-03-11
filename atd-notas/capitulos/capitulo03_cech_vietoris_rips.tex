@@ -75,12 +75,12 @@
 		La minibola de $\sigma\subseteq Y$ es $r$ si y sólo si $\sigma$ induce un simplejo en $\operatorname{Cech}_{r}(Y)$.
 	\end{exercise}
 	
-	Es claro que la minibola de $\sigma$ está determinada por un subconjunto $\nu\subseteq\sigma$ que se encuentra en la frontera. 
+	Es claro que la minibola de $\sigma$ está determinada por un subconjunto $\nu\subseteq\sigma$ que se encuentra en la frontera. Por ello, el siguiente algoritmo busca una bola cerrada que contenga a $\nu$ en la frontera y $\tau=\sigma\setminus\nu$ en el interior. Si tal bola existe, esa es la minibola de $\sigma$; si no, entonces aumenta el número de puntos que se esperan en la frontera uno a la vez. Así, para encontrar la minibola de $\sigma$ basta con llamar $\operatorname{Miniball}(\sigma, \emptyset)$
 	
 	\begin{algorithm}
 		\DontPrintSemicolon
-		\KwEntrada{$\tau, \nu$ ajenos}
-		\KwSalida{$B$ la minibola de con $\nu$ en la frontera y $\tau$ en el interior.}
+		\KwEntrada{$\tau$, $\nu$ ajenos}
+		\KwSalida{$B$ una bola cerrada que contiene a $\tau cup \nu$.}
 		\SetKwProg{Fn}{Función}{:}{}
 		\Fn{\MiniBall{$\tau, \nu$}}{
 			\Si{$\tau = \emptyset$}{
@@ -97,5 +97,9 @@
 		}
 		\caption{Algoritmo para calcular la minibola mínima de un conjunto de puntos.}
 	\end{algorithm}
+	
+	Para un análisis de complejidad de este algoritmo, referimos a \cite{edelsbrunner:2010:computational}.
+	
+	
 	
 \end{document} 
