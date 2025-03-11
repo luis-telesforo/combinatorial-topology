@@ -1,0 +1,101 @@
+\documentclass{standalone}
+\begin{document}
+	Ahora hablaremos de los complejos de \v{C}ech y Vietoris-Rips. Ambos complejos se definen para cualquier espacio topológico y sirven para visualizar datos. A diferencia del complejo que se encuentra con MAPPER que requiere muchas elecciones, los complejos que definiremos aquí sólo dependen de una sola elección y, como veremos más adelante, diferentes elecciones se pueden combinar para estudiar homológicamente nuestros datos. Excelentes referencias para este capítulo son \cite[Capítulo Complexes]{edelsbrunner:2010:computational} \cite[Capítulo 10]{edelsbrunner:2014:computational}
+	
+	\section{Complejo de \v{C}ech}
+	Empecemos directamente con la definición.
+	
+	\begin{definition}\label{def:cech}
+		Sean $X\subseteq\mathbb{R}^{d}$ un subespacio topológico, $Y\subseteq X$ finito y $r>0$. El \emph{complejo de \v{C}ech}, $\operatorname{Cech}(r,Y)$ (o $\operatorname{Cech}_{r}(Y)$) es el nervio de la cubierta cerrada $\{\bar{B}_{r}(x)\mid x\in Y\}$.
+	\end{definition}
+	
+	\begin{remark}
+		En la definición anterior, no somos específicos acerca de el espacio que es cubierto con $\{\bar{B}_{r}(x)\mid x\in Y\}$. En general deseamos que sea una cubierta de $X$ pues, siguiendo con las ideas del capítulo anterior, si $Y$ es una nube de datos extraída de $X$, entonces nuestro interés es describir a $X$. Sin embargo, esto no es posible en general. Las condiciones sobre $X$, $r$ y $Y$ que nos permiten garantizar una descripción homotópica de $X$ a través de $\operatorname{Cech}(r,Y)$ están fuera del alcance de este documento, pero referimos a \cite[Section 4.2]{chazal:frontiers} para una breve introducción al tema.
+	\end{remark}
+	
+	Observemos que este nervio se obtiene de una cubierta de cerrados convexos. Aunque es posible adaptar el Lema del nervio (Teorema~\ref{thm:nerve}) para este tipo de cubiertas, aquí será suficiente el siguiente ejercicio.
+	
+	\begin{exercise}
+		Usa el Corolario~\ref{cor:nerve_convexes} para mostrar que $\operatorname{Cech}_{r}(Y)$ es homotópicamente equivalente a $\bigcup_{x\in Y}\bar{B}_{r}(x)$. Pista: primero muestra que si $r<s$, entonces $\operatorname{Cech}_{r}(Y)\subseteq\operatorname{Cech}_{s}(Y)$.
+	\end{exercise}
+	
+	Ahora nos enfrentamos a un problema. ¿Cómo sabemos qué conjuntos forman un simplejo en $\operatorname{Cech}_{r}(Y)$? Es decir, es claro que un conjunto de bolas de radio $r$ tiene intersección no vacía si y sólo si sus centros se encuentran en una bola de radio $r$ y centro en la intersección. Pero ¿cómo determinamos esto con un algoritmo? Para responder esto usaremos el teorema de Helly. Primero necesitamos recordar un resultado sobre conjuntos convexos.
+	
+	\begin{theorem}\label{thm:hyperplane_separation_corolary}
+		Si $A$ y $B$ son conjuntos convexos en $\mathbb{R}^{d}$ tales que $\operatorname{int}(A)\neq\emptyset\operatorname{int}(B)$ y $\operatorname{int}(A)\cap \operatorname{int}(B) = \emptyset$, entonces existe un hiperplano $H$ que \emph{separa estrictamente} a $\bar{A}$ y $\bar{B}$; es decir, pertenecen a diferentes semiespacios abiertos determinados por $H$.
+	\end{theorem}
+	
+	El teorema anterior es en realidad un corolario del Teorema del hiperplano separador. Hay muchas referencias al respecto pero recomendamos \cite[Sección 3.6]{leonard:2015:convex}.
+		
+	\begin{theorem}\label{thm:helly}
+		Sea $F$ una familia de convexos cerrados en $\mathbb{R}^{d}$. La intersección de cualesquiera $d+1$ conjuntos de $F$ es no vacía si y sólo si $\cap F$ es no vacía.
+	\end{theorem} 
+	
+	La siguiente prueba es básicamente la que se encuentra en \cite[Capítulo Complexes]{edelsbrunner:2010:computational}
+	
+	\begin{proof}[Prueba del teorema de Helly]
+		Es claro que si $\cap F\neq \emptyset$, entonces la intersección de cualesquiera $d+1$ conjuntos de $F$ es no vacía.
+		
+		La prueba de la conversa es por inducción doble sobre $n=\#F$ y $n\geq d$. Para $d=1$, la inducción sobre $n$ se deja como ejercicio. También es claro que el enunciado es verdadero para $n=d+1$.
+		
+		Supongamos que, para $d>1$ tenemos una familia $F$ de $n$ convexos cerrados de $\mathbb{R}^{d}$ tal que la intersección de cualesquiera $d+1$ conjuntos de $F$ es no vacía, $\cap F=\emptyset$. Supongamos, además, que tanto $n$ como $d$ son mínimas con respecto a la existencia de $F$.
+		
+		Por la elección de $n$ y $d$, sabemos que si $F=\{X_{1},\dots, X_{n}\}$, entonces $Y_{n}=\bigcap_{i<n}X_{i}\neq\emptyset$. Por otro lado, $Y_{n}$ es convexo y cerrado. Como por hipótesis $Y_{n}\cap X_{n}=\emptyset$, el Teorema~\ref{thm:hyperplane_separation_corolary}nos asegura que existe un hiperplano $H$ que separa estrictamente a $Y_{n}$ y $X_{n}$.
+		
+		Consideremos $Z_{i}= X_{i}\cap H$ con $i<n$ y sea $F'$ el conjunto cuyos elementos son precisamente estos conjuntos. Observemos que $Z_{i}$ es cerrado y convexo de $H\cong\mathbb{R}^{d-1}$. Por otro lado, elegimos $F$ de tal manera que la intersección de cualesquiera $d$ de los $X_{i}$, con $i<n$, tiene intersección no vacía con $X_{n}$. Esto implica que si $i_{k}<d$, entonces $\bigcap_{k\leq d}X_{i_{k}}$ contiene puntos en ambos semiespacios determinados por $H$ (pues tiene intersección no vacía con $X_{n}$ y en $Y_{n}$). Como consecuencia la intersección de cualesquiera $d$ elementos de $F'$ es no vacía. Dada la elección de $n$ y $d$ concluimos que $\cap F'\neq\emptyset$.
+		
+		Para terminar, notemos que 
+		\[
+		\cap F' = \bigcap_{i<n}X_{i}\cap H =Y_{n}\cap H.
+		\]
+		Lo anterior es imposible pues $H$ separa estrictamente a $Y_{n}$ y $X_{n}$.
+	\end{proof}
+	
+	\begin{exercise}
+		Demuestra la base de la inducción sobre $n$ para $d=1$ que se omitió en el teorema anterior. Para ser precisos, muestra que si una familia de intervalos cerrados es tal que dos a dos no son ajenos, entonces la intersección de todos ellos es un intervalo cerrado.
+	\end{exercise}
+	
+	Volvamos a la pregunta ¿Cómo sabemos qué conjuntos forman un simplejo en $\operatorname{Cech}_{r}(Y)$? Ya dijimos que es claro que $\sigma\subseteq Y$ induce un simplejo en $\operatorname{Cech}_{r}(Y)$ si y sólo si los elementos de $\sigma$ pertenecen a una bola de radio $r$. Gracias al teorema de Helly podemos contestar a la pregunta de arriba y, después dar un algoritmo muy eficiente al respecto.
+	
+	\begin{theorem}[Teorema de Jung]\label{thm:jung}
+		Sea $\sigma\subseteq\mathbb{R}^{d}$. Cualesquiera $d+1$ puntos de $\sigma$ pertenecen a una bola de radio $r$ si y solo sí $\sigma$ misma está contenida en una bola de radio $r$.
+	\end{theorem}
+	
+	\begin{exercise}
+		Muestra el Teorema~\ref{thm:jung}.
+	\end{exercise}
+	
+	Así, determinar si $\sigma\subseteq Y$ induce un simplejo en $\operatorname{Cech}_{r}(Y)$ es equivalente a determinar si $\sigma$ está contenida en una bola de radio $r$.
+	
+	\begin{definition}\label{def:miniball}
+		Sea $\sigma\subseteq\mathbb{R}^{d}$. La \emph{minibola} de $\sigma$ es la bola cerrada mínima que contiene a $\sigma$.
+	\end{definition}
+	
+	\begin{exercise}
+		La minibola de $\sigma\subseteq Y$ es $r$ si y sólo si $\sigma$ induce un simplejo en $\operatorname{Cech}_{r}(Y)$.
+	\end{exercise}
+	
+	Es claro que la minibola de $\sigma$ está determinada por un subconjunto $\nu\subseteq\sigma$ que se encuentra en la frontera. 
+	
+	\begin{algorithm}
+		\DontPrintSemicolon
+		\KwEntrada{$\tau, \nu$ ajenos}
+		\KwSalida{$B$ la minibola de con $\nu$ en la frontera y $\tau$ en el interior.}
+		\SetKwProg{Fn}{Función}{:}{}
+		\Fn{\MiniBall{$\tau, \nu$}}{
+			\Si{$\tau = \emptyset$}{
+				Calcular directamente la minibola $B$ de $\nu$\;
+			}
+			\Sino{
+				Elegir un punto aleatorio $u \in \tau$\;
+				$B \gets$ \MiniBall{$\tau - \{u\}, \nu$}\;
+				\Si{$u \notin B$}{
+					$B \gets$ \MiniBall{$\tau - \{u\}, \nu \cup \{u\}$}\;
+				}
+			}
+			\Retornar $B$\;
+		}
+		\caption{Algoritmo para calcular la minibola mínima de un conjunto de puntos.}
+	\end{algorithm}
+	
+\end{document} 

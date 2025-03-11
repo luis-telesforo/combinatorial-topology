@@ -32,7 +32,14 @@
 \captionsetup{format=hang,subrefformat=parens}
 \usepackage[margin=.8in]{geometry}
 
-\usepackage{todonotes}
+\usepackage[spanish,boxruled,noline,linesnumbered]{algorithm2e}
+\SetKwInput{KwEntrada}{Entrada}
+\SetKwInput{KwSalida}{Salida}
+\SetKwIF{Si}{SinoSi}{Sino}{Si}{entonces}{Sino si}{Sino}{finSi}
+\SetKwFor{Para}{Para}{hacer}{finPara}
+\SetKwFor{Mientras}{Mientras}{hacer}{finMientras}
+\SetKwFunction{MiniBall}{MiniBall}
+\SetKw{Retornar}{Retornar}
 
 \theoremstyle{definition}
 \newtheorem{proposition}{Proposición}
@@ -68,6 +75,10 @@
 \chapter{Lema del nervio y el algoritmo MAPPER}
 \label{ch:nerve_thm}
 \import{capitulos/}{capitulo02_teorema_del_nervio}
+
+\chapter{Complejos de \v{C}ech y Vietoris-Rips}
+\label{ch:nerve_thm}
+\import{capitulos/}{capitulo03_cech_vietoris_rips}
 
 \backmatter
 \bibliographystyle{acm}
