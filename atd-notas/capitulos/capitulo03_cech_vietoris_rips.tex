@@ -80,7 +80,7 @@
 	\begin{algorithm}
 		\DontPrintSemicolon
 		\KwEntrada{$\tau$, $\nu$ ajenos}
-		\KwSalida{$B$ una bola cerrada que contiene a $\tau cup \nu$.}
+		\KwSalida{$B$ una bola cerrada que contiene a $\tau \cup \nu$.}
 		\SetKwProg{Fn}{Función}{:}{}
 		\Fn{\MiniBall{$\tau, \nu$}}{
 			\Si{$\tau = \emptyset$}{
@@ -100,6 +100,30 @@
 	
 	Para un análisis de complejidad de este algoritmo, referimos a \cite{edelsbrunner:2010:computational}.
 	
+	\section{Complejo de Vietoris-Rips}
+	Otro complejo simplicial que se puede asociar a una nube de datos es el complejo de Vietoris-Rips. Como vimos antes, determinar los simplejos de $\operatorname{Cech}_{r}(Y)$ requiere encontrar las minibolas de los subconjuntos de $Y$. En contraste, para determinar los complejos del complejo de Vietoris-Rips, sólo necesitamos verificar que dos a dos se encuentran en una bola de radio $r$.
 	
+	\begin{definition}\label{def:vietoris_rips}
+		Sean $X\subseteq\mathbb{R}^{d}$ un subespacio topológico, $Y\subseteq X$ finito y $r>0$. El \emph{complejo de Vietoris-Rips }, $\operatorname{VRips}(r,Y)$ (o $\operatorname{VRips}_{r}(Y)$) es el complejo simplicial generado por los conjuntos $\sigma\subseteq Y$  tales que $d(x,y)\leq2r$ para cualesquiera $x,y\in\sigma$.
+	\end{definition}
 	
+	\begin{exercise}
+		Muestra que $\operatorname{Skel}_{1}(\operatorname{VRips}_{r}(Y)) = \operatorname{Skel}_{1}(\operatorname{Cech}_{r}(Y))$
+	\end{exercise}
+	
+	\begin{exercise}
+		Muestra que $\operatorname{Cech}_{r}(Y)$ es un subcomplejo de $\operatorname{VRips}_{r}(Y)$
+	\end{exercise}
+	
+	Aunque el ejercicio anterior es muy sencillo, el siguiente resultado sí requiere un argumento más complejo \cite{edelsbrunner:2010:computational}.
+	
+	\begin{lemma}
+		Para cada $r$ el complejo de Vietoris-Rips $\operatorname{VRips}_{r}(Y)$ es un subcomplejo de $\operatorname{Cech}_{\sqrt{2}r}(Y)$ 
+	\end{lemma}.
+	
+	De estas desigualdades, tenemos certeza de que podemos aproximar el complejo de \v{C}ech por el de Vietoris-Rips. Esto es ventajoso pues para determinar el último basta con calcular $\operatorname{Skel}_{1}(\operatorname{Cech}_{r}(Y))$ y luego determinar el complejo de \emph{clanes} de esa gráfica (véase \cite{meshulam:2001:clique:homology}).
+	
+	Otra cosa que vale la pena notar es que ambos complejos forman cadenas de subcomplejos simpliciales de $\mathcal{P}(Y)$. Esto es muy importante y regresaremos a considerarlo cuando estudiemos homología persistente. 
+	
+	Para terminar recomendamos \cite{edelsbrunner:2010:computational, edelsbrunner:2014:computational} para conocer otras estructuras que se pueden asociar a nubes de datos.  
 \end{document} 
