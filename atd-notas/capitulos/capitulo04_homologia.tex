@@ -1,0 +1,49 @@
+\documentclass{standalone}
+\begin{document}
+	Este capíyulo no pretende ser una introducción a Homología simplicial, sino que buscamos proveer las herramientas teóricas necesarias para poder estudiar aplicaciones de homología persistente. Por ello, recomendamos complementar la lectura de este capítulo con un curso de topología algebraica. En particular recomendamos \cite{munkres:1984:algebraic:topology} como referencia básica para topología algebraica. Otras referencias que pueden ser útiles para acompañar este capítulo son \cite[Capítulos IV y VII]{edelsbrunner:2010:computational} y \cite{scoville:2019:discrete:morse}. El primer texto es excelente para estudiar persistencia, pues los autores trabajan ampliamente en el tema. El segundo texto tiene la misma meta que este capítulo. 
+	
+	\section{Complejos de cadenas sobre $\mathbb{Z}_{2}$}
+	
+	Dado que sólo queremos estudiar homología de tal manera que podamos hacer aplicaciones pronto, no vamos estudiar homología en general sino que estudiaremos homología simplicial con coeficientes en $\mathbb{Z}_{2}$. Empezamos con complejos de cadenas sobre $\mathbb{Z}_{2}$.
+	
+	\begin{definition}\label{def:chain_complex_z_2}
+		Un \emph{complejo de cadenas sobre $\mathbb{Z}_{2}$} es una colección de $\mathbb{Z}_{2}$-espacios vectoriales $\mathcal{C}=(C_{n})_{n\in\mathbb{Z}}$ junto con una familia de morfismos $\partial_{n}\colon C_{n}\rightarrow C_{n-1}$ tales que $\partial_{n}\circ\partial_{n+1}=0$. Los elementos de $C_{n}$ se llaman \emph{$n$-cadenas} y los morfismos $\partial_{n}$ se llaman \emph{mapas frontera}.
+	\end{definition}
+	
+	Observemos que la definición anterior no depende en realidad de $\mathbb{Z}_{2}$, así que en general se puede definir un complejo de cadenas sobre cualquier campo y más generalmente sobre cualquier categoría abeliana.
+	
+	\begin{exercise}\label{prop:partial_partial}
+		Demuestra que $\operatorname{im}(\partial_{n+1})\leq\operatorname{ker}(\partial_{n})$
+	\end{exercise}
+	
+	El ejercicio anterior es fundamental pues nos permite definir la homología de un complejo de cadenas $\mathcal{C}$.
+	
+	\begin{definition}\label{defn:z_cycles_boundary}
+		El \emph{conjunto de $n$-ciclos de $\mathcal{C}$} es $Z_{n}(\Delta)=\ker(\partial_{n})$; el \emph{conjunto de $n$-fronteras de $\Delta$} es $B_{n}(\Delta)=\operatorname{im}(\partial_{n+1})$.
+	\end{definition}
+	
+	Del ejercicio anterior~\ref{prop:partial_partial} sabemos que: $B_{n}(\Delta)\leq Z_{n}(\Delta)$.
+	\begin{definition}\label{defn:z_simplicial_homology}
+		El \emph{$n$-ésimo grupo de homología de $\mathcal{C}$} es $H_{n}(\Delta)=Z_{n}(\Delta)/B_{n}(\Delta)$.
+	\end{definition}
+	Para profundizar en la teoría de complejos de cadena, recomendamos \cite{rotman:1988:algebraic:topology}.
+	\section{Homología simplicial con coeficientes en $\mathbb{Z}_{2}$}
+	Ahora, vamos a construir los grupos de homología con coeficientes en $\mathbb{Z}_{2}$ para un complejo simplicial.
+	
+	Sea $K$ un complejo simplicial. Definimos $\mathcal{C}(K)_{n}$ como el $\mathbb{Z}_{2}$-espacio vectorial con base $K_{n}$. Para cada $n$ sea $\partial_{n}\colon\mathcal{C}(K)_{n}\rightarrow\mathcal{C}(K)_{n-1}$ la función definida como 
+	\[
+	\partial_{n}(\sigma)=\sum_{\tau\text{ es frontera de }\sigma}\tau.
+	\]
+	
+	\begin{definition}
+		El $n$-ésimo grupo de homología con coeficientes en $\mathbb{Z}_{2}$ de $K$ es el $n$-ésimo grupo de homología de $\mathcal{C}(K)$
+	\end{definition}
+	
+	\begin{exercise}
+		Prueba que el $n$-ésimo grupo de homología de un complejo simplicial está bien definido; es decir, demuestra que los mapas frontera de $\mathcal{C}(K)$ satisfacen $\partial_{n}\circ\partial_{n+1}=0$.
+	\end{exercise}
+	
+	\begin{exercise}
+		Calcula los grupos de homología de $\partial\sigma$ donde $\sigma$ es un $3$-simplejo.
+	\end{exercise}
+\end{document} 
